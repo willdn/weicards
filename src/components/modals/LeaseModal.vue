@@ -33,7 +33,7 @@
           </div>
         </div>
         <!-- Lease form -->
-        <form class="ui form">
+        <form class="ui form" @submit.prevent="lease()">
           <div class="field">
             <label>Title</label>
             <input type="text" v-model="leaseForm.title" name="title" placeholder="Enter title">
@@ -68,7 +68,7 @@
           <div class="ui segment basic center aligned">
             <button class="ui green button"
                     :class="{ 'disabled': !formValid }"
-              @click.prevent="lease()">
+                    type="submit">
               <i class="fa fa-check"></i>
               Confirm
             </button>

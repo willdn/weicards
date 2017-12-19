@@ -23,7 +23,7 @@
             <b>{{ card.owner.substring(0, 15) }}...</b>
           </div>
         </div>
-        <form class="ui form">
+        <form class="ui form" @submit.prevent="buy()">
           <div class="field">
             <label>Title</label>
             <input type="text" v-model="buyForm.title" name="title" placeholder="Enter title">
@@ -59,7 +59,7 @@
           <div class="ui segment basic center aligned">
             <button class="ui green button"
                     :class="{ 'disabled': !formValid }"
-              @click.prevent="buy()">
+                    type="submit">
               <i class="fa fa-check"></i>
               Confirm
             </button>
