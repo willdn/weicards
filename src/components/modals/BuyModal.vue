@@ -30,10 +30,7 @@
           </div>
           <div class="field">
             <label>URL</label>
-            <div class="ui labeled input">
-              <a class="ui label" data-tooltip="Switch to https://" data-inverted="" data-position="right center">
-                http://
-              </a>
+            <div class="ui input">
               <input type="url" v-model="buyForm.url" name="url" placeholder="Enter URL">
             </div>
           </div>

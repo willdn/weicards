@@ -41,9 +41,6 @@
           <div class="field">
             <label>URL</label>
             <div class="ui labeled input">
-              <a class="ui label" data-tooltip="Switch to https://" data-inverted="" data-position="right center">
-                http://
-              </a>
               <input type="url" v-model="leaseForm.url" name="url" placeholder="Enter URL">
             </div>
           </div>
