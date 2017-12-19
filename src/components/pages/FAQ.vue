@@ -60,7 +60,7 @@
         <div class="column ten wide">
           <p>Once you purchase a card, it belongs to you. From here you have multiple options :</p>
           <ul>
-            <li><b><router-link :to="{ name: 'FAQ', hash: '#lease-card' }" >Lease</router-link></b> it to someone for a fixed price and duration</li>
+            <li><b><router-link :to="{ name: 'FAQ', hash: '#lease-card' }" >Rent</router-link></b> it out to someone for a fixed price and duration</li>
             <li><b><router-link :to="{ name: 'FAQ', hash: '#sell-card' }" >Sell</router-link></b> it to a fixed price</li>
             <li><b><router-link class="item" :to="{ name: 'FAQ', hash: '#edit-card' }" >Edit</router-link></b> your card details</li>
             <li><b>Leave</b> it as it is</li>
@@ -349,8 +349,17 @@
       </p>
 
       <h3 class="ui header" id="lease-card-lessor">> As lessor</h3>
-      <p></p>
-
+      <p>
+        As a card owner, you are able to rent it out at a fixed price for a determined duration. Cards eligible to rent has a 
+        <i class="fa fa-key"></i> <b>Lease</b> button displayed in their footer. You also can set a card to rent by accessing it's
+        details page and select <i class="fa fa-cogs"></i> <b>Settings</b> > <i class="fa fa-key"></i> <b>Lease</b>.
+      </p>
+      <p>
+        You will be asked to enter the amount per block, exprimed in Wei. This amount represent the price you are asking for leasing 
+        your card for each block mined on the network. The duration field is the number of blocks you want to rent out your card, starting
+        at the block number when tenant sign the deal. Considering an average block generation time of 15 secondes, 6 000 blocks
+        is a day and 1 000 000 blocks is approximately 6 months. 
+      </p>
       <h2 class="ui header" id="edit-card">
         How can I edit a card ?
       </h2>
@@ -372,12 +381,6 @@
         <b>Note</b> : we strongly encourage to double check the recipient address. If you transferred to a wrong address, consider
         your card as <b>lost</b>. 
       </div>
-
-      <h2 class="ui header" id="card-rules">
-        What details can I provide to a card ?
-      </h2>
-      <p>
-      </p>
     </div>
 
     <div class="ui segment raised">
@@ -395,18 +398,31 @@
       <h2 class="ui header" id="what-is-giveth">
         What is Giveth ?
       </h2>
-      <p>Giveth.io is</p>
-
+      <p>
+        <a target="_blank" href="https://giveth.io/">Giveth</a> is an Open-Source Platform for building Decentralized Altruistic Communities (DAC).
+      </p>
+      <div class="ui basic segment">
+        <q>
+          Giveth is re-engineering charitable giving, by creating an entirely free, open-source platform, built on the Ethereum Blockchain.
+          Our system cuts out bureaucracy and enables nonprofits to create a high level of transparency and accountability towards Givers.
+          At any point until the moment funds are locked, a Giver can decide to withdraw them. 
+        </q>
+      </div>
+      <p> You can learn more on Giveth <a target="_blank" href="https://medium.com/giveth/what-is-the-future-of-giving-d50446b0a0e4">Giveth</a></p>
+      
       <h2 class="ui header" id="who-are-you">
         Who are you ?
       </h2>
-      <p>I'm a Computer Science student from Belgium. This is my very first Smart Contract deployed on the Ethereum blockchain.</p>
+      <p>I'm a Computer Science student from Belgium. I'm into blockchain technology since mid 2017 and this is my first Smart Contract
+        published on the Ethereum blockchain ! 
+      </p>
 
       <h2 class="ui header" id="projects-money">
         What will you do with the money ?
       </h2>
-      <p>As previously said, 10% of the profits generated on the initial cards sales will be reversed to Giveth. The remain will be used
-        to fund other blockchains related projects.</p>
+      <p>I have other projects on the Ethereum blockchain, the profits realised by WeiCards will help fund them. It will also be used
+        to invest in other blockchain related projects.
+      </p>
     </div>
   </div>
   </div>
