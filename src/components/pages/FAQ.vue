@@ -76,7 +76,7 @@
           <p>
             You can <b>edit</b> your cards at any time in the card settings 
             (click on card position <span class="ui circular label card-id-label" :data-tooltip="`View card #15 details`" data-inverted=""><b>15</b></span>
-            to display it's details and settings). From there, you may also <b>transfer the ownership</b> of your card.
+            to display its details and settings). From there, you may also <b>transfer the ownership</b> of your card.
           </p>
           <p>
             Finally, you can just <b>leave</b> your card(s) with your details and strut around that you own one (or more !) of 127 unique cards.
@@ -133,7 +133,7 @@
       <a href="https://metamask.io/">MetaMask</a> is a browser (<i class="fab fa-chrome"></i> Chrome and <i class="fab fa-firefox"></i> Firefox) plugin that bridge the Ethereum blockchain 
       and is the easiest way to interact with Smart Contract.</p>
       <p>
-        This plugin provide you a wallet where you can send some Ether (Ξ) and will be your login access to buy, lease and sell cards ! Thus, there is no registration nor login form, just
+        This plugin provides you a wallet where you can send some Ether (Ξ) and will be your login access to buy, lease and sell cards ! Thus, there is no registration nor login form, just
         unlock a wallet on MetaMask and you have now access to every WeiCards features.
       </p>
       <p>
@@ -153,8 +153,9 @@
       </h2>
       <div class="ui stackable grid">
         <div class="column ten wide">
-          <p>Card availables to purchase have a <span class="ui green tiny label"><i class="fa fa-shopping-cart"></i> Buy</span> ribbon in their top left corner.
-          In order to purchase this card, you can either click on this ribbon or the footer in order to lease this card.
+          <p>Cards available to purchase have a <span class="ui green tiny label"><i class="fa fa-shopping-cart"></i> Buy</span> ribbon in their top left corner.
+          In order to buy this card, you can either click on this ribbon or the card footer 
+          <i class="fa fa-shopping-cart"></i> <b>Buy</b> (< <i>Price</i> > Ξ).
           </p>
           <p>
           You will need to provide 3 things :
@@ -222,7 +223,7 @@
           </p>
           <p>
             You just have to set the price you want it to be sold. Your card will now be listed as on sale, the ownership
-            of your card will be transferred to the first buyer. The amount is then transferred to your balance. <i>Note : 
+            of your card will be transferred to the first buyer. You will then be credited of the transaction amount. <i>Note : 
             WeiCards take a 1% cut on this transaction.</i> 
           </p>
         </div>
@@ -306,8 +307,9 @@
           <div class="card-description">Card #34 is available for a lease with a total amount of 0.75 Ξ for 1 000 000 blocks.</div>
         </div>
         <div class="column ten wide">
-          <p>Card availables to rent have a <span class="ui orange tiny label"><i class="fa fa-key"></i> Lease</span> ribbon in their top left corner.
-          Just as cards available for sell, you can either click on this ribbon or the footer to rent this card.
+          <p>Cards available to rent have a <span class="ui orange tiny label"><i class="fa fa-key"></i> Lease</span> ribbon in their top left corner.
+          Just as cards listed on sale, you can either click on this ribbon or the footer card footer
+          <i class="fa fa-key"></i> < <i>Total amount</i> > Ξ / < <i>Block duration</i> >.
           </p>
           <p>
             Details of the lease are displayed in a table similar as the following :
@@ -333,10 +335,9 @@
           </div>
           <p>
             Where the <b>Ξ Total Amount</b> is the product of the <b>lease duration</b> and the <b>price per block</b>, this is paid beforehand by the
-            tenant to the lessor. The <i class="far fa-clock"></i> <b>Duration</b> column display the duration of the lease, exprimed in
-            blocks. At the moment, 1 block &asymp; 15 seconds (<i>e.g.</i> 1 000 000 blocks is approximately 6 months).
+            tenant to the lessor. The <i class="far fa-clock"></i> <b>Duration</b> column display the duration of the lease in blocks. At the moment, 1 block &asymp; 15 seconds (<i>e.g.</i> 1 000 000 blocks is approximately 6 months).
             <i class="far fa-user"></i><b>Lessor</b> column display the current owner of the card. During lease offer creation, he set a fixed 
-            <b>price per block</b> exprimed in Wei (1 Ether = 10<sup>18</sup> Wei).
+            <b>price per block</b> in Wei (1 Ether = 10<sup>18</sup> Wei).
           </p>
         </div>
       </div>
@@ -351,21 +352,21 @@
       <h3 class="ui header" id="lease-card-lessor">> As lessor</h3>
       <p>
         As a card owner, you are able to rent it out at a fixed price for a determined duration. Cards eligible to rent has a 
-        <i class="fa fa-key"></i> <b>Lease</b> button displayed in their footer. You also can set a card to rent by accessing it's
+        <i class="fa fa-key"></i> <b>Lease</b> button displayed in their footer. You also can set a card to rent by accessing its
         details page and select <i class="fa fa-cogs"></i> <b>Settings</b> > <i class="fa fa-key"></i> <b>Lease</b>.
       </p>
       <p>
-        You will be asked to enter the amount per block, exprimed in Wei. This amount represent the price you are asking for leasing 
+        You will be asked to enter the amount per block in Wei. This amount represents the price you are asking to lease 
         your card for each block mined on the network. The duration field is the number of blocks you want to rent out your card, starting
-        at the block number when tenant sign the deal. Considering an average block generation time of 15 secondes, 6 000 blocks
-        is a day and 1 000 000 blocks is approximately 6 months. 
+        at the block number when tenant sign the deal. Considering an average block generation time of 15 seconds, 6 000 blocks
+        is a day and 1 000 000 blocks is approximately 6 months.
       </p>
       <h2 class="ui header" id="edit-card">
         How can I edit a card ?
       </h2>
       <p>
         If you need to update some or all the details of your card, you are able to change them by accessing the card details page and
-        select <i class="fa fa-cogs"></i> <b>Settings</b> > <i class="fa fa-wrench"></i> <b>Edit</b>. From there are you are able to 
+        select <i class="fa fa-cogs"></i> <b>Settings</b> > <i class="fa fa-wrench"></i> <b>Edit</b>. From there are you can  
         edit the card's title, URL and image.
       </p>
 
@@ -378,7 +379,7 @@
          compromised.
       </p>
       <div class="ui orange message">
-        <b>Note</b> : we strongly encourage to double check the recipient address. If you transferred to a wrong address, consider
+        <b>Note</b> : we strongly encourage to double-check the recipient address. If you transferred to a wrong address, consider
         your card as <b>lost</b>. 
       </div>
     </div>
@@ -391,8 +392,8 @@
          to pay a small fee to those who maintain the blockchain. You can set the maximal fee you want to pay for, as so, you can set a very low
          fee if you accept that your operation take more time.</p>
       <p>
-        Otherwise, there is a 1% fee on each card transaction (sell or lease). We are proud to reverse 10% of the profits generated by the the initial cards sales
-        to Giveth. Note that this 10% cut is only applied to the initial sale and will not be substract to your profits from selling or leasing cards.
+        Otherwise, there is a 1% fee on each card transaction (sell or lease). We are proud to reverse 10% of the profits generated by the initial cards sales
+        to Giveth. Note that this 10% cut is only applied to the initial sale and will not be subtracted to your profits from selling or leasing cards.
       </p>
 
       <h2 class="ui header" id="what-is-giveth">
@@ -408,7 +409,7 @@
           At any point until the moment funds are locked, a Giver can decide to withdraw them. 
         </q>
       </div>
-      <p> You can learn more on Giveth <a target="_blank" href="https://medium.com/giveth/what-is-the-future-of-giving-d50446b0a0e4">Giveth</a></p>
+      <p> You can learn more on Giveth <a target="_blank" href="https://medium.com/giveth/what-is-the-future-of-giving-d50446b0a0e4">here</a>.</p>
       
       <h2 class="ui header" id="who-are-you">
         Who are you ?
@@ -420,7 +421,7 @@
       <h2 class="ui header" id="projects-money">
         What will you do with the money ?
       </h2>
-      <p>I have other projects on the Ethereum blockchain, the profits realised by WeiCards will help fund them. It will also be used
+      <p>I have other projects on the Ethereum blockchain, the profits made by WeiCards will help fund them. It will also be used
         to invest in other blockchain related projects.
       </p>
     </div>
