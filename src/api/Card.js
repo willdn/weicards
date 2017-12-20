@@ -33,7 +33,7 @@ class Card {
     } else if (this.isBought() && this.inLeasing()) {
       return this.lastLease.title
     }
-    return `Card ${this.id}`
+    return `Card #${this.id}`
   }
 
   getURL () {
@@ -205,6 +205,15 @@ class Card {
     const blockTime = 15
     let totalTimeSecond = this.leaseDuration * blockTime
     return moment().add(totalTimeSecond, 's')
+  }
+
+  endLeaseDate () {
+    if (this.inLeasing()) {
+      const blockTime = 15
+      let blockNumber = store.getters.blockNumber
+      let totalTimeSecond = (this.lastLease.untilBlock - blockNumber) * blockTime
+      return moment().add(totalTimeSecond, 's')
+    }
   }
 }
 

@@ -8,7 +8,7 @@
     </div>
     <div class="ui segment raised">
       <h2 class="ui basic segment center aligned header">
-        You will need <img class="ui image tiny" src="https://metamask.io/img/metamask.png" /> <a href="https://metamask.io/">MetaMask</a> to sign in
+        You will need <img class="ui image tiny" :src="require('@/assets/images/metamask.png')"> <a href="https://metamask.io/">MetaMask</a> to sign in
       </h2>
       <div class="ui basic segment">
       </div>

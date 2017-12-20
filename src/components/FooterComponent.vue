@@ -2,7 +2,7 @@
   <footer class="ui four item stackable menu">
     <a class="item item-1">
       <i class="fa fa-file"></i>
-      Contract Source
+      Contract
     </a>
     <router-link :to="{ name: 'FAQ'}"  class="item item-2">
       <i class="fa fa-question"></i>

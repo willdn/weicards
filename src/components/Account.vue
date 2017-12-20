@@ -63,7 +63,7 @@
           -->
         </div>
       </div>
-      <div v-if="accountCards.length > 0" class="ui container center aligned">
+      <div v-if="accountCards.length > 0" class="ui container">
         <div class="ui link four stackable cards">
           <card v-for="card in accountCards" :key="card.id" :index="card.id"></card>
         </div>
@@ -76,7 +76,7 @@
     <loader v-if="!loaded && !networkUnknown" />
     <!-- Wrong network -->
     <div v-if="networkUnknown" class="ui segment center aligned">
-      <img class="ui image centered tiny" src="https://metamask.io/img/metamask.png" /><br />
+      <img class="ui image centered tiny" :src="require('@/assets/images/metamask.png')" /><br />
       Select <b>Main Ethereum Network</b> in MetaMask to display your account
     </div>
   </div>
