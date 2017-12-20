@@ -76,7 +76,7 @@
     <loader v-if="!loaded && !networkUnknown" />
     <!-- Wrong network -->
     <div v-if="networkUnknown" class="ui segment center aligned">
-      <img class="ui image centered tiny" src="https://metamask.io/img/metamask.png" /><br />
+      <img class="ui image centered tiny" :src="require('@/assets/images/metamask.png')" /><br />
       Select <b>Main Ethereum Network</b> in MetaMask to display your account
     </div>
   </div>
