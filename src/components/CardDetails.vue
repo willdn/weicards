@@ -98,15 +98,24 @@
         <th>Title</th>
         <th>Tenant</th>
         <th>URL</th>
-        <th>Duration</th>
+        <th>End</th>
       </tr></thead>
       <tbody>
         <tr v-for="lease in leases" :key="lease.leaseIndex">
-          <td>{{ lease.leaseIndex }}</td>
+          <td>
+            <div v-if="lease.leaseIndex !== card.lastLease.leaseIndex">{{ lease.leaseIndex }}</div>
+            <div v-if="lease.leaseIndex === card.lastLease.leaseIndex" class="ui orange ribbon label">
+              <i class="fa fa-star"></i>
+            </div>
+        </td>
           <td><img class="ui image avatar" :src="lease.image" /> {{ lease.title }}</td>
-          <td>{{ lease.tenant.substring(0, 15) }}...</td>
+          <td>
+          <span v-if="lease.tenant === currentAddress" class="ui compact teal tiny label"
+                data-tooltip="That's you !" data-inverted="">You</span>
+            {{ lease.tenant.substring(0, 15) }}...
+          </td>
           <td>{{ lease.url }}</td>
-          <td>{{ lease.untilBlock }}</td>
+          <td>{{ leaseEndTime(lease.untilBlock).fromNow() }}</td>
         </tr>
       </tbody>
       <tfoot>
@@ -118,7 +127,7 @@
 </template>
 
 <script>
-// import web3 from 'web3'
+import moment from 'moment'
 import config from '@/config'
 import Card from '@/components/Card'
 import Loader from '@/components/layouts/Loader'
@@ -167,6 +176,12 @@ export default {
   methods: {
     getCard () {
       this.card = this.cards.find(c => c.id === this.id)
+    },
+    leaseEndTime (untilBlock) {
+      const blockTime = 15
+      let blockNumber = this.$store.getters.blockNumber
+      let totalTimeSecond = (untilBlock - blockNumber) * blockTime
+      return moment().add(totalTimeSecond, 's')
     },
     buildLeasesList () {
       this.getLeasesList()

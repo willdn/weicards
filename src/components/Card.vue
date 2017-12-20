@@ -60,6 +60,7 @@
              :data-tooltip="`Leased by ${card.lastLease.tenant.substring(0, 12)}... until ${card.endLeaseDate().format('LL')}`" data-inverted="">
           <i class="fa fa-key"></i>
           {{ card.lastLease.tenant.substring(0, 12) }}...
+          <span v-if="card.lastLease.tenant === currentAddress" class="ui compact teal tiny label">You</span>
         </div>
       </div>
     </div>
