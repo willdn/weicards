@@ -26,17 +26,30 @@
         <form class="ui form" @submit.prevent="buy()">
           <div class="field">
             <label>Title</label>
-            <input type="text" v-model="buyForm.title" name="title" placeholder="Enter title">
+            <div class="ui labeled input">
+              <div class="ui label">
+                <i class="fa fa-bars"></i>
+              </div>
+              <input type="text" v-model="buyForm.title" name="title" placeholder="Enter title">
+            </div>
           </div>
           <div class="field">
             <label>URL</label>
-            <div class="ui input">
-              <input type="url" v-model="buyForm.url" name="url" placeholder="Enter URL">
+            <div class="ui labeled input">
+              <div class="ui label">
+                <i class="fa fa-link"></i>
+              </div>
+              <input type="url" v-model="buyForm.url" name="url" placeholder="http://">
             </div>
           </div>
           <div class="field">
             <label>Image</label>
-            <input type="url" v-model="buyForm.image" name="image" placeholder="Enter image URL">
+            <div class="ui labeled input">
+              <div class="ui label">
+                <i class="far fa-image"></i>
+              </div>
+              <input type="url" v-model="buyForm.image" name="image" placeholder="Enter image URL">
+            </div>
           </div>
           <!-- Card preview -->
           <div v-if="preview" class="field">

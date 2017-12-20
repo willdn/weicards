@@ -21,6 +21,9 @@
           <div class="field">
             <label>Sell price</label>
             <div class="ui right labeled input">
+              <div class="ui label">
+                <i class="fa fa-dollar-sign"></i>
+              </div>
               <input type="number" v-model="sellPrice" name="sellPrice" placeholder="Enter price" autocomplete="off">
               <div class="ui label">
                 Ether
