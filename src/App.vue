@@ -254,4 +254,8 @@ p {
 .far {
   margin-right: 0.25em !important;
 }
+/*  */
+.error-exclamation {
+  color: #DB2828;
+}
 </style>

@@ -52,7 +52,7 @@
       WeiCards homepage is filled with cards ranked from 1 to 127, no more, no less. Each card is initially
       sold at a price related to its rank, the card #1 is initially sold at 1.27 Ether and card #127 is set at 0.01 Ether.
       A card is made from a descriptive title, a redirection URL and an image set by the card owner.
-      For each card sold during the initial sale, <b>10% of the amount is reversed to Giveth.io</b> !
+      For each card sold during the initial sale, <b>10% of the amount is reversed to <router-link :to="{ name: 'FAQ', hash: '#what-is-giveth' }" >Giveth</router-link></b> !
       </p>
       <p>If no cards are available to buy, you probably can rent out one. You'll pay to the card owner a fixed amount of Ether to display
       your details for a pre-determined duration.</p>
@@ -75,7 +75,7 @@
           </p>
           <p>
             You can <b>edit</b> your cards at any time in the card settings 
-            (click on card position <span class="ui circular label card-id-label" :data-tooltip="`View card #15 details`" data-inverted=""><b>15</b></span>
+            (click on card position <span class="ui tiny circular label card-id-label" :data-tooltip="`View card #15 details`" data-inverted=""><b>15</b></span>
             to display its details and settings). From there, you may also <b>transfer the ownership</b> of your card.
           </p>
           <p>
@@ -117,13 +117,13 @@
       <h2 class="ui header" id="whats-cool">
         So, what's the deal ?
       </h2>
-      <p>Although WeiCards looks like a regular website, it's not one, it's a Decentralized Applications (DApps). Cards are not loaded from our database (we do not host anything) but instead directly loaded from the Ethereum blockchain.
+      <p>Although WeiCards looks like a regular website, it's not one, it's a Decentralized Applications (ÐApps). Cards are not loaded from our database (we do not host anything) but instead directly loaded from the Ethereum blockchain.
       This blockchain acts like a decentralized database where everyone can see it's state and cannot be tampered. Once you acquired a card, it is written in
       the blockchain and it remains forever yours. 
       </p>
       <p>
       The other cool stuff is that you can check the logic behind WeiCard by auditing the Smart Contract. You can have a look at the <a href="">smart contract on Etherscan</a>
-      and the front-end <a href="">hosted on GitHub</a>.
+      and the front-end hosted on <a target="_blank" href="https://github.com/willdn/weicards"><i class="fab fa-github"></i> Github</a>.
       </p>
 
       <h2 class="ui header" id="what-do-i-need">
@@ -226,6 +226,11 @@
             of your card will be transferred to the first buyer. You will then be credited of the transaction amount. <i>Note : 
             WeiCards take a 1% cut on this transaction.</i> 
           </p>
+          <p>
+            Card may be sold even when you rented it out, as you have already been credited of the total lease amount. You are also able to
+            <router-link :to="{ name: 'FAQ', hash: '#edit-card' }" >edit</router-link> them, your updated details will be displayed once lease
+            is over.
+          </p>
         </div>
         <div class="column six wide">
           <!-- Card buy demo -->
@@ -251,16 +256,16 @@
                     <i class="fa fa-dollar-sign"></i>
                     Sell
                   </div>
-                  <div class="column orange-hover" data-tooltip="Set lease offer on card #99" data-inverted="">
+                  <div class="column orange-hover" data-tooltip="Rent out card #99" data-inverted="">
                     <i class="fa fa-key"></i>
-                    Lease
+                    Rent out
                   </div>
                 </div>
               </div>
             </div>
           </div>
           <div class="card-description">Cards you own has a teal position label
-            <span class="ui circular label teal"><b>99</b></span>
+            <span class="ui tiny circular label teal"><b>99</b></span>
           </div>
         </div>
       </div>
@@ -304,7 +309,7 @@
               </div>
             </div>
           </div>
-          <div class="card-description">Card #34 is available for a lease with a total amount of 0.75 Ξ for 1 000 000 blocks.</div>
+          <div class="card-description">Card #34 is available for a lease at a total amount of 0.75 Ξ for 1 000 000 blocks.</div>
         </div>
         <div class="column ten wide">
           <p>Cards available to rent have a <span class="ui orange tiny label"><i class="fa fa-key"></i> Lease</span> ribbon in their top left corner.
@@ -349,18 +354,58 @@
         , the card you just rented will then display the details you provided until the <i class="far fa-clock"></i> <b>Duration</b> is over.
       </p>
 
+
       <h3 class="ui header" id="lease-card-lessor">> As lessor</h3>
-      <p>
-        As a card owner, you are able to rent it out at a fixed price for a determined duration. Cards eligible to rent has a 
-        <i class="fa fa-key"></i> <b>Lease</b> button displayed in their footer. You also can set a card to rent by accessing its
-        details page and select <i class="fa fa-cogs"></i> <b>Settings</b> > <i class="fa fa-key"></i> <b>Lease</b>.
-      </p>
-      <p>
-        You will be asked to enter the amount per block in Wei. This amount represents the price you are asking to lease 
-        your card for each block mined on the network. The duration field is the number of blocks you want to rent out your card, starting
-        at the block number when tenant sign the deal. Considering an average block generation time of 15 seconds, 6 000 blocks
-        is a day and 1 000 000 blocks is approximately 6 months.
-      </p>
+      <div class="ui stackable grid">
+        <div class="column ten wide">
+          <p>
+            As a card owner, you are able to rent it out at a fixed price for a determined duration. Cards eligible to rent out has a 
+            <i class="fa fa-key"></i> <b>Rent out</b> button displayed in their footer. You also can set a card to rent by accessing its
+            details page and select <i class="fa fa-cogs"></i> <b>Settings</b> > <i class="fa fa-key"></i> <b>Rent out</b>.
+          </p>
+          <p>
+            You will be asked to enter the amount per block in Wei. This amount represents the price you are asking to lease 
+            your card for each block mined on the network. The duration field is the number of blocks you want to rent out your card, starting
+            at the block number when tenant sign the deal. Considering an average block generation time of 15 seconds, 6 000 blocks
+            is a day and 1 000 000 blocks is approximately 6 months. The total amount is the product of the block duration and amount per block, this 
+            total amount should be greater than 0.005 Ξ.
+          </p>
+        </div>
+        <div class="column six wide">
+          <!-- Card buy demo -->
+          <div class="ui link cards">
+            <div class="ui centered card raised">
+              <div class="ui fluid image">
+                <div class="ui floating right circular label teal" :data-tooltip="`View card #99 details`" data-inverted="">
+                    <b>78</b>
+                </div>
+                <img class="card-image" :src="require('@/assets/images/demo-card-bunny.png')">
+              </div>
+              <div class="content">
+                <div class="ui header">
+                  Card #78
+                </div>
+                <div class="meta">
+                  bunny.io
+                </div>
+              </div>
+              <div class="extra content">
+                <div class="ui grid equal width center aligned">
+                  <div class="column green-hover" data-tooltip="Sell card #78" data-inverted="">
+                    <i class="fa fa-dollar-sign"></i>
+                    Sell
+                  </div>
+                  <div class="column orange-hover" data-tooltip="Rent out card #78" data-inverted="">
+                    <i class="fa fa-key"></i>
+                    Rent out
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <h2 class="ui header" id="edit-card">
         How can I edit a card ?
       </h2>
@@ -379,8 +424,8 @@
          compromised.
       </p>
       <div class="ui orange message">
-        <b>Note</b> : we strongly encourage to double-check the recipient address. If you transferred to a wrong address, consider
-        your card as <b>lost</b>. 
+        <b>Note</b> : we strongly encourage to double-check the recipient address. If you transferred to an address of which you do not own keys, 
+        consider your card as <b>lost</b>. 
       </div>
     </div>
 

@@ -17,6 +17,9 @@
           <div class="field">
             <label>Price</label>
             <div class="ui right labeled input">
+              <div class="ui label">
+                <i class="fa fa-dollar-sign"></i>
+              </div>
               <input type="text" v-model="leaseForm.pricePerBlock" name="pricePerBlock" placeholder="Enter price per block"
                      autocomplete="off">
               <div class="ui label">
@@ -27,7 +30,10 @@
           <div class="field">
             <label>Duration</label>
             <div class="ui right labeled input">
-              <input type="text" v-model="leaseForm.leaseDuration" name="leaseDuration" placeholder="Enter number of block of the lease contract"
+              <div class="ui label">
+                <i class="fa fa-clock"></i>
+              </div>
+              <input type="text" v-model="leaseForm.leaseDuration" name="leaseDuration" placeholder="Enter number of block of the rent duration"
                      autocomplete="off">
               <div class="ui label">
                 blocks
@@ -38,7 +44,10 @@
           <div class="ui segment basic grid equal width">
             <div v-if="totalAmountEther" class="row">
               <div class="column">Total amount</div>
-              <div class="column">{{ totalAmountEther }} Ether</div>
+              <div class="column">
+                <i v-if="totalAmountEther < config.minLeaseAmount" class="fa fa-exclamation-circle error-exclamation"></i>
+                {{ totalAmountEther }} Ether
+              </div>
             </div>
             <div v-if="estimatedTime" class="row">
               <div class="column">Estimated lease end</div>
@@ -48,6 +57,7 @@
           <!-- Actions -->
           <div class="ui segment basic center aligned">
             <button class="ui green button"
+              :class="{ 'disabled': !validForm }"
               @click.prevent="setLease()">
               <i class="fa fa-check"></i>
               Confirm
@@ -70,6 +80,7 @@
 import TxLoader from '@/components/layouts/TxLoader'
 import BigNumber from 'bignumber.js'
 import Card from '@/api/Card'
+import config from '@/config'
 import { successNotification, transactionDeniedNotif } from '@/api'
 import moment from 'moment'
 
@@ -80,6 +91,7 @@ export default {
   },
   data () {
     return {
+      config: config,
       card: null,
       leaseForm: {
         pricePerBlock: null,
@@ -111,6 +123,10 @@ export default {
       const blockTime = 15
       let totalTimeSecond = this.leaseForm.leaseDuration * blockTime
       return moment().add(totalTimeSecond, 's')
+    },
+    validForm () {
+      return (this.totalAmountEther >= config.minLeaseAmount && !this.nullOrEmpty(this.leaseForm.pricePerBlock) &&
+               !this.nullOrEmpty(this.leaseForm.leaseDuration))
     }
   },
   methods: {
@@ -118,7 +134,7 @@ export default {
       return (value == null || value === '')
     },
     setLease () {
-      if (this.nullOrEmpty(this.leaseForm.pricePerBlock) || this.nullOrEmpty(this.leaseForm.leaseDuration)) return false
+      if (!this.validForm) return false
       const card = Card.getById(this.card.id)
       this.txWait = true
       card.setLeaseOffer(new BigNumber(this.leaseForm.pricePerBlock), new BigNumber(this.leaseForm.leaseDuration))
