@@ -4,7 +4,7 @@
     <router-view id="app-content"/>
     <footer-component />
     <!-- Modals -->
-    <unknown-network-modal></unknown-network-modal>
+    <!-- <unknown-network-modal></unknown-network-modal> -->
     <set-lease-offer-modal></set-lease-offer-modal>
     <buy-modal></buy-modal>
     <sell-card-modal></sell-card-modal>
@@ -39,7 +39,7 @@ const networkConfig = {
   'ropsten': {
     networkId: 3,
     contractAddress: config.contractAddressRopsten,
-    fallback: 'https://ropsten.infura.io/zCoNB4bZNvfhe5AkvYkt'
+    fallback: `https://ropsten.infura.io/${config.infuraAPIKey}`
   }
   /*
   'dev': {
