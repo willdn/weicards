@@ -1,10 +1,10 @@
-const ETHCards = artifacts.require('./ETHCards.sol')
+const ETHCards = artifacts.require('./WeiCards.sol')
 
 function computeInitialPrice (index) {
   return 1280000000000000000 - (10000000000000000 * index)
 }
 
-contract('ETHCards', (accounts) => {
+contract('WeiCards', (accounts) => {
   const owner = accounts[0]
   const withdrawWallet = accounts[1]
   const account1 = accounts[2]

@@ -72,7 +72,7 @@
       </a>
       <a class="column orange-hover" v-if="!card.availableBuy && !card.availableLease && !card.inLeasing()" href=""
          @click.prevent="setLeaseCard()">
-        <i class="fa fa-key"></i> Lease
+        <i class="fa fa-key"></i> Rent out
       </a>
       <a class="column blue-hover" href=""><i class="fa fa-wrench"></i> Edit</a>
       <a class="column teal-hover" href=""

@@ -33,5 +33,5 @@ truffle migrate
 
 ``` bash
 # Run truffle test
-truffle test ./test/ethcards.js --network test
+truffle test ./test/weicards.js --network test
 ```

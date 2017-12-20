@@ -351,9 +351,9 @@
 
       <h3 class="ui header" id="lease-card-lessor">> As lessor</h3>
       <p>
-        As a card owner, you are able to rent it out at a fixed price for a determined duration. Cards eligible to rent has a 
-        <i class="fa fa-key"></i> <b>Lease</b> button displayed in their footer. You also can set a card to rent by accessing its
-        details page and select <i class="fa fa-cogs"></i> <b>Settings</b> > <i class="fa fa-key"></i> <b>Lease</b>.
+        As a card owner, you are able to rent it out at a fixed price for a determined duration. Cards eligible to rent out has a 
+        <i class="fa fa-key"></i> <b>Rent out</b> button displayed in their footer. You also can set a card to rent by accessing its
+        details page and select <i class="fa fa-cogs"></i> <b>Settings</b> > <i class="fa fa-key"></i> <b>Rent out</b>.
       </p>
       <p>
         You will be asked to enter the amount per block in Wei. This amount represents the price you are asking to lease 
