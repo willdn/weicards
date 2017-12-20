@@ -90,14 +90,14 @@
                 <div class="ui floating right circular label card-id-label" :data-tooltip="`View card #5 details`" data-inverted="">
                     <b>15</b>
                 </div>
-                <img class="card-image" src="https://images.fastcompany.net/image/upload/w_1280,f_auto,q_auto,fl_lossy/fc/3000999-poster-1920-what-dead-squirrel-taught-me-about-value-pricing.jpg">
+                <img class="card-image" :src="require('@/assets/images/demo-card-squirrel.png')">
               </div>
               <div class="content">
                 <div class="ui header">
-                  Giraffe
+                  Card #15
                 </div>
                 <div class="meta">
-                  giraffe.zoo
+                  squirrel.io
                 </div>
               </div>
               <div class="extra content">
@@ -181,7 +181,7 @@
                 <div class="ui floating right circular label card-id-label" :data-tooltip="`View card #5 details`" data-inverted="">
                     <b>5</b>
                 </div>
-                <img class="card-image" src="https://pagez.com/attachments/818/article/0/6becdabb07293ed0b06f628b9d3e0dc3.jpg">
+                <img class="card-image" :src="require('@/assets/images/demo-card-cat.png')">
                 <!-- Ribbon available buy -->
                 <a class="ui green tiny left ribbon label">
                   <i class="fa fa-shopping-cart"></i>
@@ -190,10 +190,10 @@
               </div>
               <div class="content">
                 <div class="ui header">
-                  Kitty
+                  Card #5
                 </div>
                 <div class="meta">
-                  kittycard.io
+                  kitty.io
                 </div>
               </div>
               <div class="extra content">
@@ -235,14 +235,14 @@
                 <div class="ui floating right circular label teal" :data-tooltip="`View card #99 details`" data-inverted="">
                     <b>99</b>
                 </div>
-                <img class="card-image" src="http://www.cbc.ca/natureofthings/content/images/episodes/foxtales_growingup.jpg">
+                <img class="card-image" :src="require('@/assets/images/demo-card-fox.png')">
               </div>
               <div class="content">
                 <div class="ui header">
-                  Kitty
+                  Card #99
                 </div>
                 <div class="meta">
-                  kittycard.io
+                  fox.io
                 </div>
               </div>
               <div class="extra content">
@@ -278,7 +278,7 @@
                 <div class="ui floating right circular label card-id-label" :data-tooltip="`View card #34 details`" data-inverted="">
                     <b>34</b>
                 </div>
-                <img class="card-image" src="https://thumbs-prod.si-cdn.com/azaY6UJQr6w7GMO5NScOuYhUbIM=/800x600/filters:no_upscale()/https://public-media.smithsonianmag.com/filer/ef/ff/efff9ae5-1832-489f-bb1f-f1a00944a8aa/hedgehog.jpg">
+                <img class="card-image" :src="require('@/assets/images/demo-card-dog.png')">
                <!-- Ribbon available buy -->
                 <a class="ui orange tiny left ribbon label">
                   <i class="fa fa-key"></i>
@@ -287,10 +287,10 @@
               </div>
               <div class="content">
                 <div class="ui header">
-                  Squirrel
+                  Card #34
                 </div>
                 <div class="meta">
-                  squirrel.zoo
+                  dog.io
                 </div>
               </div>
               <div class="extra content">

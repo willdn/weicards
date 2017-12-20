@@ -33,7 +33,7 @@ class Card {
     } else if (this.isBought() && this.inLeasing()) {
       return this.lastLease.title
     }
-    return `Card ${this.id}`
+    return `Card #${this.id}`
   }
 
   getURL () {
