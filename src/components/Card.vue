@@ -57,7 +57,7 @@
     <div v-if="!card.availableBuy && card.owner !== currentAddress && inLeasing" class="extra content">
       <div class="ui grid equal width center aligned">
         <div class="column"
-             :data-tooltip="`Leased by ${card.lastLease.tenant.substring(0, 12)}... for ${card.lastLease.untilBlock} blocks`" data-inverted="">
+             :data-tooltip="`Leased by ${card.lastLease.tenant.substring(0, 12)}... until ${card.endLeaseDate().format('LL')}`" data-inverted="">
           <i class="fa fa-key"></i>
           {{ card.lastLease.tenant.substring(0, 12) }}...
         </div>
@@ -97,7 +97,7 @@
         </div>
         <!-- Leasing -->
         <div class="column" v-if="card.inLeasing()"
-             :data-tooltip="`Your card #${card.id} is in lease until block ${card.lastLease.untilBlock}`" data-inverted="">
+             :data-tooltip="`Your card #${card.id} is in lease until ${card.endLeaseDate().format('LL')}`" data-inverted="">
           <i class="fa fa-key"></i>
            Leasing to {{ card.lastLease.tenant.substring(0, 15) }}
         </div>
@@ -117,7 +117,7 @@
     <div v-if="card.availableLease && card.owner != currentAddress" class="extra content">
       <div class="ui grid equal width center aligned">
         <div class="column green-hover" @click.prevent="leaseCard()"
-             :data-tooltip="`Lease card #${card.id} at ${leaseTotalAmount} Ξ for ${parseInt(card.leaseDuration).toLocaleString()} blocks`" data-inverted="">
+             :data-tooltip="`Lease card #${card.id} at ${leaseTotalAmount} Ξ until ${card.estimatedLeaseEnd().format('LL')}`" data-inverted="">
           <i class="fa fa-key"></i>
           <b>{{ leaseTotalAmount }} Ξ</b> / {{ parseInt(card.leaseDuration).toLocaleString() }} blocks
         </div>

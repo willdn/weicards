@@ -206,6 +206,15 @@ class Card {
     let totalTimeSecond = this.leaseDuration * blockTime
     return moment().add(totalTimeSecond, 's')
   }
+
+  endLeaseDate () {
+    if (this.inLeasing()) {
+      const blockTime = 15
+      let blockNumber = store.getters.blockNumber
+      let totalTimeSecond = (this.lastLease.untilBlock - blockNumber) * blockTime
+      return moment().add(totalTimeSecond, 's')
+    }
+  }
 }
 
 export default Card

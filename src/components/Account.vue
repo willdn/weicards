@@ -63,7 +63,7 @@
           -->
         </div>
       </div>
-      <div v-if="accountCards.length > 0" class="ui container center aligned">
+      <div v-if="accountCards.length > 0" class="ui container">
         <div class="ui link four stackable cards">
           <card v-for="card in accountCards" :key="card.id" :index="card.id"></card>
         </div>
