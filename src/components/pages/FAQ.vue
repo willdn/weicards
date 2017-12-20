@@ -54,11 +54,11 @@
       A card is made from a descriptive title, a redirection URL and an image set by the card owner.
       For each card sold during the initial sale, <b>10% of the amount is reversed to <router-link :to="{ name: 'FAQ', hash: '#what-is-giveth' }" >Giveth</router-link></b> !
       </p>
-      <p>If no cards are available to buy, you probably can rent out one. You'll pay to the card owner a fixed amount of Ether to display
+      <p>If no cards are available to buy, you probably can rent one. You'll pay to the card owner a fixed amount of Ether to display
       your details for a pre-determined duration.</p>
       <div class="ui stackable grid">
         <div class="column ten wide">
-          <p>Once you purchase a card, it belongs to you. From here you have multiple options :</p>
+          <p>Once you purchase a card, it belongs to <b>you</b>. From here you have multiple options :</p>
           <ul>
             <li><b><router-link :to="{ name: 'FAQ', hash: '#lease-card' }" >Rent</router-link></b> it out to someone for a fixed price and duration</li>
             <li><b><router-link :to="{ name: 'FAQ', hash: '#sell-card' }" >Sell</router-link></b> it to a fixed price</li>
@@ -227,7 +227,7 @@
             WeiCards take a 1% cut on this transaction.</i> 
           </p>
           <p>
-            Card may be sold even when you rented it out, as you have already been credited of the total lease amount. You are also able to
+            Card may be sold even if they are leased, as you have already been credited of the total lease amount. You are also able to
             <router-link :to="{ name: 'FAQ', hash: '#edit-card' }" >edit</router-link> them, your updated details will be displayed once lease
             is over.
           </p>

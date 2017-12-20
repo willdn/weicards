@@ -5,7 +5,8 @@ contract WeiCards {
     /// Buy card event
     event Buy(uint8 cardId);
 
-    /// Define a lease
+    /// Lease record, store card tenants details
+    /// and lease details
     struct LeaseCard {
       uint id;
       address tenant;
@@ -16,7 +17,7 @@ contract WeiCards {
       string image;
     }
 
-    /// Define card details
+    /// Record card details
     struct cardDetails {
       uint8 id;
       uint price;
@@ -28,7 +29,7 @@ contract WeiCards {
       mapping(uint => LeaseCard) leaseCardStructs;
     }
 
-    /// Define card
+    /// Record card
     struct Card {
       uint8 id;
       address owner;
@@ -57,18 +58,13 @@ contract WeiCards {
 
     /// contractOwner can withdraw the funds
     address contractOwner;
-    /// withdrawWallet is the fixed destination of funds to withdraw. It is
-    /// separate from contractOwner to allow for a cold storage destination.
-    address withdrawWallet;
     /// Giveth address
     address giveEthAddress = 0x5ADF43DD006c6C36506e2b2DFA352E60002d22Dc;
     
     /// Contract constructor
     function WeiCards(address _contractOwner) public {
       require(_contractOwner != address(0));
-      // require(_withdrawWallet != address(0));
       contractOwner = _contractOwner;
-      withdrawWallet = _contractOwner;
     }
 
     modifier onlyContractOwner()
@@ -171,6 +167,7 @@ contract WeiCards {
     }
 
     /// Perform a user to user buy transaction
+    /// Contract owner takes 1% cut on each of this transaction
     function buyCard(uint8 cardId, string title, string url, string image) public
         onlyValidCard(cardId)
         payable
@@ -232,7 +229,7 @@ contract WeiCards {
         return true;
     }
 
-    /// Allow card owner to set his card on lease at specific price and duration
+    /// Allow card owner to set his card on lease at fixed price per block and duration
     function setLeaseCard(uint8 cardId, uint priceLease, uint leaseDuration) public
         onlyValidCard(cardId)
         onlyCardOwner(cardId)
@@ -294,7 +291,7 @@ contract WeiCards {
         cardDetailsStructs[cardId].leaseCardStructs[leaseId].image = image;
         // Leases are now unavailable for this card
         cardDetailsStructs[cardId].availableLease = false;
-        // Add lease to leases list of correspond cardDetails
+        // Add lease to leases list of correspondant cardDetails
         cardDetailsStructs[cardId].leaseList.push(leaseId);
         return true;
     }
@@ -354,7 +351,6 @@ contract WeiCards {
         // sending to prevent re-entrancy attacks
         pendingWithdrawals[msg.sender] = 0;
         msg.sender.transfer(amount);
-        
         return true;
     }
     
