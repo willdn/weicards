@@ -8,7 +8,7 @@
     <div v-if="!txWait" class="sell-card-modal">
       <div v-if="card" class="ui segment basic center aligned">
         <h2 class="ui header">
-          Cancel #{{ card.id }} lease offer ?
+          Cancel #{{ card.id }} rent out ?
         </h2>
       </div>
       <!-- Lease details -->

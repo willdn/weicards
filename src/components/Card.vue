@@ -73,9 +73,9 @@
           <i class="fa fa-dollar-sign"></i>
           Sell
         </div>
-        <!-- Cancel sell offer -->
+        <!-- Cancel sale -->
         <div class="column red-hover" v-if="card.availableBuy"
-             :data-tooltip="`Cancel sell offer card #${card.id}`" data-inverted=""
+             :data-tooltip="`Cancel card #${card.id} sale`" data-inverted=""
              @click.prevent="cancelSellCard()">
           <i class="fa fa-times"></i>
           Cancel sale (<b>{{ card.buyPriceToEther() }} Ξ</b>)
@@ -83,17 +83,17 @@
         <!-- Lease -->
         <!-- Set Lease -->
         <div class="column orange-hover" v-if="!card.availableBuy && !card.availableLease && !card.inLeasing()"
-             :data-tooltip="`Set lease offer on card #${card.id}`" data-inverted=""
+             :data-tooltip="`Rent out card #${card.id}`" data-inverted=""
              @click.prevent="setLeaseCard()">
           <i class="fa fa-key"></i>
-           Lease
+           Rent out
         </div>
         <!-- Cancel lease -->
         <div class="column red-hover" v-if="card.availableLease"
-             :data-tooltip="`Cancel lease offer on card #${card.id} (${leaseTotalAmount} Ξ / ${card.leaseDuration.toLocaleString()} blocks)`" data-inverted=""
+             :data-tooltip="`Cancel card #${card.id} rent out (${leaseTotalAmount} Ξ / ${card.leaseDuration.toLocaleString()} blocks)`" data-inverted=""
              @click.prevent="cancelLeaseOffer()">
           <i class="fa fa-times"></i>
-           Cancel lease
+           Cancel rent out
         </div>
         <!-- Leasing -->
         <div class="column" v-if="card.inLeasing()"

@@ -9,7 +9,7 @@
       <div v-if="card" class="ui container center aligned">
         <h2 class="ui header">
           <i class="fa fa-key"></i>
-          Lease #{{ card.id }}
+          Rent out #{{ card.id }}
         </h2>
       </div>
       <div class="ui container">
