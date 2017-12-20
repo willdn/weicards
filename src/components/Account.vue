@@ -24,19 +24,23 @@
               </span>
           </div>
         </div>
-        <div class="ui basic segment grid equal width">
-          <div class="row">
-            <div class="column"><i class="far fa-address-card"></i> <b>Bought</b></div>
-            <div class="column">{{ boughtCards.length }}</div>
-          </div>
-          <div class="row">
-            <div class="column"><i class="fa fa-key"></i> <b>In lease</b></div>
-            <div class="column">{{ leasingCards.length }}</div>
-          </div>
-          <div class="row">
-            <div class="column"><i class="fa fa-key"></i> <b>In rent</b></div>
-            <div class="column">{{ rentingCards.length }}</div>
-          </div>
+        <div class="ui basic segment stackable grid equal width center aligned">
+            <div class="column">
+              <h4 class="ui header"><i class="far fa-address-card"></i> <b>Bought</b></h4>
+              {{ boughtCards.length }}
+            </div>
+            <div class="column">
+              <h4 class="ui header"><i class="fa fa-dollar-sign"></i> <b>In sale</b></h4>
+              {{ saleCards.length }}
+            </div>
+            <div class="column">
+              <h4 class="ui header"><i class="fa fa-arrow-up"></i><i class="fa fa-key"></i> <b>Rented out</b></h4>
+              {{ leasingCards.length }}
+            </div>
+            <div class="column">
+              <h4 class="ui header"><i class="fa fa-arrow-down"></i><i class="fa fa-key"></i> <b>Rent</b></h4>
+              {{ rentingCards.length }}
+            </div>
         </div>
       </div>
       <!-- Cards -->
@@ -127,6 +131,9 @@ export default {
     },
     leasingCards () {
       return this.$store.getters.cards.filter(c => (c.inLeasing() && this.currentAddress === c.owner))
+    },
+    saleCards () {
+      return this.$store.getters.cards.filter(c => c.availableBuy && this.currentAddress === c.owner)
     },
     rentingCards () {
       return this.$store.getters.cards.filter(c => (c.inLeasing() && this.currentAddress === c.lastLease.tenant))

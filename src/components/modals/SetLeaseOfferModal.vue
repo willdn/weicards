@@ -45,7 +45,7 @@
             <div v-if="totalAmountEther" class="row">
               <div class="column">Total amount</div>
               <div class="column">
-                <i v-if="totalAmountEther < config.minLeaseAmount" class="fa fa-exclamation"></i>
+                <i v-if="totalAmountEther < config.minLeaseAmount" class="fa fa-exclamation-circle error-exclamation"></i>
                 {{ totalAmountEther }} Ether
               </div>
             </div>
