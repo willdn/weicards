@@ -22,7 +22,8 @@
         Why do I need MetaMask ?
       </h3>
       <p>WeiCards is a Decentralized Application running on the Ethereum blockchain. The easiest way to interact with them is by using a small browser add-on.
-      This will provide you a wallet where you can send some Ether (Ξ) and will be <b>your login access</b> to buy, lease and sell cards !</p>
+        This plugin provides a wallet where you can send some Ether (Ξ) in order to execute operations. This plugin is your only <b>login access</b> to buy, lease and sell cards !
+        Thus, there is no registration nor login form, just install and unlock a wallet on MetaMask and you have now access to every WeiCards features.</p>
       <div class="ui basic segment center aligned">
         <div class="ui large header">More questions ? Have a look at our <router-link :to="{ name: 'FAQ' }">FAQ</router-link></div>
       </div>

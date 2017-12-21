@@ -67,13 +67,14 @@
           <p>
             You can <b>rent out</b> your card to someone willing to rent it. As owner, you will get the total rent amount beforehand.
             During the lease, the card will display and redirect to the details provided by the tenant. Once the lease end,
-            the card display your card details again. 
+            the card display your details again. 
           </p>
           <p>
-            <b>Selling</b> a card is as simple as setting a sell price and voilà, your card can now be bought by anyone.
+            <b>Selling</b> a card is as simple as setting a sell price and voilà, your card can now be bought by anyone. The ownership
+            will be transferred to the first buyer and you will be credited of the sale amount !
           </p>
           <p>
-            You can <b>edit</b> your cards at any time in the card settings 
+            You can <b>edit</b> your cards at any time in the card <i class="fa fa-cogs"></i> <b>Settings</b> 
             (click on card position <span class="ui tiny circular label card-id-label" :data-tooltip="`View card #15 details`" data-inverted=""><b>15</b></span>
             to display its details and settings). From there, you may also <b>transfer the ownership</b> of your card.
           </p>
@@ -117,23 +118,23 @@
         So, what's the deal ?
       </h2>
       <p>Although WeiCards looks like a regular website, it's not one, it's a Decentralized Applications (ÐApps). Cards are not loaded from our database (we do not host anything) but instead directly loaded from the Ethereum blockchain.
-      This blockchain acts like a decentralized database where everyone can see it's state and cannot be tampered. Once you acquired a card, it is written in
+      This blockchain acts like a decentralized database where everyone can see its state and cannot be tampered by anyone. Once you acquired a card, it is written in
       the blockchain and it remains forever yours. 
       </p>
       <p>
       The other cool stuff is that you can check the logic behind WeiCard by auditing the Smart Contract. You can have a look at the <a href="">smart contract on Etherscan</a>
-      and the front-end hosted on <a target="_blank" href="https://github.com/willdn/weicards"><i class="fab fa-github"></i> Github</a>.
+      or the front-end hosted on <a target="_blank" href="https://github.com/willdn/weicards"><i class="fab fa-github"></i> Github</a>.
       </p>
 
       <h2 class="ui header" id="what-do-i-need">
         What do I need ?
       </h2>
-      <p>You only need a browser to view cards. However, you will need <a href="https://metamask.io/">MetaMask</a> to buy, lease and sell cards.
-      <a href="https://metamask.io/">MetaMask</a> is a browser (<i class="fab fa-chrome"></i> Chrome and <i class="fab fa-firefox"></i> Firefox) plugin that bridge the Ethereum blockchain 
+      <p>You only need a browser to view cards and cards details. However, you will need <a href="https://metamask.io/">MetaMask</a> to buy, lease and sell cards.
+      MetaMask is a browser (<i class="fab fa-chrome"></i> Chrome and <i class="fab fa-firefox"></i> Firefox) plugin that bridge the Ethereum blockchain 
       and is the easiest way to interact with Smart Contract.</p>
       <p>
-        This plugin provides you a wallet where you can send some Ether (Ξ) and will be your login access to buy, lease and sell cards ! Thus, there is no registration nor login form, just
-        unlock a wallet on MetaMask and you have now access to every WeiCards features.
+        This plugin provides a wallet where you can send some Ether (Ξ) in order to execute operations. This plugin is your only <b>login access</b> to buy, lease and sell cards !
+        Thus, there is no registration nor login form, just install and unlock a wallet on MetaMask and you have now access to every WeiCards features.
       </p>
       <p>
         The following video gives an introduction and a setup guide for MetaMask :
@@ -164,7 +165,7 @@
               <li><b>URL: </b> URL to redirect to when visitors click on your card.</li>
               <li><b>Image: </b> URL of the image you want to display within the card.
               Images can be of any types supported by browsers (<i>e.g.</i> PNG, JPG, SVG <i>etc.</i>).
-              Try to use an image with a 16:9 ratio and as lightweight as possible.</li>
+              Try to use an image as lightweight as possible.</li>
             </ul>
           <div class="ui orange message">
             <b>Note</b> : the more your URL and image URL are longer, the more<b> you are paying</b> in fee !
@@ -458,7 +459,7 @@
       <h2 class="ui header" id="who-are-you">
         Who are you ?
       </h2>
-      <p>I'm a Computer Science student from Belgium. I'm into blockchain technology since mid 2017 and this is my first Smart Contract
+      <p>I'm a Computer Science student from Belgium. I'm into blockchain technology since early 2017 and this is my first Smart Contract
         published on the Ethereum blockchain ! 
       </p>
 
