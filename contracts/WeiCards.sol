@@ -48,8 +48,8 @@ contract WeiCards {
     mapping(uint8 => cardDetails) cardDetailsStructs; // random access by card details key
     uint8[] cardDetailsList; // list of cards details keys so we can enumerate them
 
-    /// Initial card price (1.28 Ether)
-    uint initialCardPrice = 1280000000000000000; // wei
+    /// Initial card price
+    uint initialCardPrice = 1 ether;
 
     /// Owner cut (1%) . This cut only apply on a user-to-user card transaction
     uint ownerBuyCut = 100;
@@ -84,7 +84,7 @@ contract WeiCards {
     modifier onlyValidCard(uint8 cardId)
     {
        // Throws if card is not valid
-        require(cardId >= 1 && cardId <= 127);
+        require(cardId >= 1 && cardId <= 100);
         _;
     }
     
@@ -359,8 +359,8 @@ contract WeiCards {
         onlyValidCard(cardId)
         returns (uint price)
     {
-        // 1.27 ether - 0.01 ether * cardId
-        return initialCardPrice - (10000000000000000 * uint256(cardId));
+        // 1 ether - 0.01 ether * (cardId - 1)
+        return initialCardPrice - ((initialCardPrice / 100) * (uint256(cardId) - 1));
     }
 
     /// Allow contract owner to set NSFW flag on a card

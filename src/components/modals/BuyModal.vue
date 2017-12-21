@@ -122,16 +122,14 @@ export default {
       if (!this.card) return null
       return (this.card.owner.startsWith('0x0'))
     },
-    initialPriceCompute () {
-      let price = new BigNumber(1000000000000000000)
-      let ethPrice = 1.28 - (0.01 * this.card.id)
-      return price.times(ethPrice.toFixed(2)).toNumber().toString()
-    },
     price () {
       if (!this.card) return null
-      let price = (this.isInitialBuy) ? this.initialPriceCompute : this.card.price
-      /* globals web3 */
-      return web3.utils.fromWei(price, 'ether')
+      if (this.isInitialBuy) {
+        return this.card.computeInitialPrice().toFixed(2)
+      } else {
+        /* globals web3 */
+        return web3.utils.fromWei(this.card.price, 'ether')
+      }
     },
     previewImage () {
       return ((this.buyForm.image || '') === '') ? require('@/assets/images/card-placeholder.png') : this.buyForm.image
@@ -147,7 +145,7 @@ export default {
       this.txWait = true
       const card = Card.getById(this.card.id)
       /* globals web3 */
-      const price = web3.utils.toWei(this.price, 'ether')
+      const price = web3.utils.toWei(new BigNumber(this.price).toNumber().toString(), 'ether')
       card.buy(this.isInitialBuy, {
         title: this.buyForm.title,
         url: this.buyForm.url,

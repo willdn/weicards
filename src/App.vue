@@ -40,14 +40,11 @@ const networkConfig = {
     networkId: 3,
     contractAddress: config.contractAddressRopsten,
     fallback: `https://ropsten.infura.io/${config.infuraAPIKey}`
-  }
-  /*
+  },
   'dev': {
-    networkId: 4447,
     contractAddress: config.contractAddressDev,
     fallback: 'http://localhost:9545'
   }
-  */
 }
 
 export default {
@@ -65,7 +62,7 @@ export default {
   },
   data () {
     return {
-      network: 'ropsten',
+      network: 'dev',
       contract: null
     }
   },

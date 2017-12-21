@@ -1,5 +1,5 @@
 const config = {
-  cardsNumber: 127,
+  cardsNumber: 100,
   maxLeaseDuration: 2500000,
   minLeaseAmount: 0.005,
   infuraAPIKey: 'KGldez6F33JbsLQy8rhV',

@@ -49,8 +49,7 @@
         How it works ?
       </h2>
       <p>WeiCards let you <router-link :to="{ name: 'FAQ', hash: '#buy-card' }" >buy</router-link>, <router-link :to="{ name: 'FAQ', hash: '#lease-card' }" >lease</router-link> and <router-link :to="{ name: 'FAQ', hash: '#sell-card' }" >sell</router-link> cards.
-      WeiCards homepage is filled with cards ranked from 1 to 127, no more, no less. Each card is initially
-      sold at a price related to its rank, the card #1 is initially sold at 1.27 Ether and card #127 is set at 0.01 Ether.
+      WeiCards homepage is filled with cards ranked from 1 to 100. Each card is sold at a price related to its rank, the card #1 is initially sold at 1 Ether and card #100 is set at 0.01 Ether.
       A card is made from a descriptive title, a redirection URL and an image set by the card owner.
       For each card sold during the initial sale, <b>10% of the amount is reversed to <router-link :to="{ name: 'FAQ', hash: '#what-is-giveth' }" >Giveth</router-link></b> !
       </p>
@@ -79,7 +78,7 @@
             to display its details and settings). From there, you may also <b>transfer the ownership</b> of your card.
           </p>
           <p>
-            Finally, you can just <b>leave</b> your card(s) with your details and strut around that you own one (or more !) of 127 unique cards.
+            Finally, you can just <b>leave</b> your card(s) with your details and strut around that you own one (or more !) of 100 unique cards.
           </p>
         </div>
         <div class="column six wide center">

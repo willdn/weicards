@@ -63,7 +63,11 @@ class Card {
   }
 
   computeInitialPrice () {
-    return 1.28 - (0.01 * this.id)
+    return 1 - (0.01 * (this.id - 1))
+  }
+
+  computeInitialPriceWei () {
+    return web3.utils.toWei(this.computeInitialPrice(), 'ether')
   }
 
   buy (initialBuy, data) {
