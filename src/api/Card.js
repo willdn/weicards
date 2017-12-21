@@ -197,6 +197,20 @@ class Card {
       })
   }
 
+  edit (data) {
+    return store.getters.contract.methods.editCard(this.id,
+      data.title,
+      data.url,
+      data.image)
+      .send({ from: store.getters.currentAddress })
+      .then((txHash) => {
+        this.title = data.title
+        this.url = data.url
+        this.image = data.image
+        return txHash
+      })
+  }
+
   buyPriceToEther () {
     return web3.utils.fromWei(this.price, 'ether')
   }

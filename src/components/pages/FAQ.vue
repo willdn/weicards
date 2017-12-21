@@ -264,7 +264,7 @@
               </div>
             </div>
           </div>
-          <div class="card-description">Cards you own has a teal position label
+          <div class="card-description">Cards you own have a teal position label
             <span class="ui tiny circular label teal"><b>99</b></span>
           </div>
         </div>

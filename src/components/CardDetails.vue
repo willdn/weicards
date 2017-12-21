@@ -85,7 +85,10 @@
          @click.prevent="setLeaseCard()">
         <i class="fa fa-key"></i> Rent out
       </a>
-      <a class="column blue-hover" href=""><i class="fa fa-wrench"></i> Edit</a>
+      <a class="column blue-hover" href=""
+         @click.prevent="edit()">
+        <i class="fa fa-wrench"></i> Edit
+      </a>
       <a class="column teal-hover" href=""
          @click.prevent="transferOwnership()">
         <i class="fa fa-exchange-alt"></i> Transfer
@@ -133,6 +136,7 @@
       </tfoot>
     </table>
     <!-- Modals -->
+    <edit-modal></edit-modal>
     <transfer-ownership-modal></transfer-ownership-modal>
   </div>
 </template>
@@ -144,13 +148,15 @@ import Card from '@/components/Card'
 import Loader from '@/components/layouts/Loader'
 // Modals
 import TransferOwnershipModal from '@/components/modals/TransferOwnershipModal'
+import EditModal from '@/components/modals/EditModal'
 
 export default {
   name: 'cardDetails',
   components: {
     Loader,
     Card,
-    TransferOwnershipModal
+    TransferOwnershipModal,
+    EditModal
   },
   data () {
     return {
@@ -244,6 +250,11 @@ export default {
     },
     cancelLeaseOffer () {
       this.$modal.show('cancelLeaseOfferModal', {
+        card: this.card
+      })
+    },
+    edit () {
+      this.$modal.show('editModal', {
         card: this.card
       })
     },
