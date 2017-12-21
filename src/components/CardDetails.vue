@@ -25,10 +25,12 @@
         </h3>
         <div class="ui segment raised">
           <div class="ui grid equal width">
+            <!-- ID -->
             <div class="row">
               <div class="column">#</div>
               <div class="column">{{ card.id }}</div>
             </div>
+            <!-- Owner -->
             <div class="row">
               <div class="column">
                 <i class="fa fa-user"></i> Owner
@@ -39,13 +41,22 @@
                 {{ (card.isBought()) ? card.getOwner() : 'None' }}
               </div>
             </div>
+            <!-- Title -->
             <div class="row">
               <div class="column"><i class="fa fa-bars"></i> Title</div>
-              <div class="column">{{ (card.isBought()) ? card.getTitle() : 'None' }}</div>
+              <div class="column">
+                <small v-if="card.inLeasing()" data-tooltip="This is tenant card title" data-inverted=""><i class="fa fa-key"></i></small>
+                {{ (card.isBought()) ? card.getTitle() : 'None' }}
+              </div>
             </div>
+            <!-- URL -->
             <div class="row">
               <div class="column"><i class="fa fa-link"></i> URL</div>
-              <div class="column">{{ (card.isBought()) ? card.getURL() : 'None' }}</div>
+              <div v-if="!card.isBought()" class="column">None</div>
+              <div v-if="card.isBought()" class="column">
+                <small v-if="card.inLeasing()" data-tooltip="This is tenant card URL" data-inverted=""><i class="fa fa-key"></i></small>
+                <a :href="card.getURL()" target="_blank">{{ card.getURL() }}</a>
+              </div>
             </div>
           </div>
         </div>
@@ -103,8 +114,8 @@
       <tbody>
         <tr v-for="lease in leases" :key="lease.leaseIndex">
           <td>
-            <div v-if="lease.leaseIndex !== card.lastLease.leaseIndex">{{ lease.leaseIndex }}</div>
-            <div v-if="lease.leaseIndex === card.lastLease.leaseIndex" class="ui orange ribbon label">
+            <div v-if="lease.untilBlock < blockNumber">{{ lease.leaseIndex }}</div>
+            <div v-if="lease.untilBlock >= blockNumber" class="ui orange ribbon label">
               <i class="fa fa-star"></i>
             </div>
         </td>
@@ -114,7 +125,7 @@
                 data-tooltip="That's you !" data-inverted="">You</span>
             {{ lease.tenant.substring(0, 15) }}...
           </td>
-          <td>{{ lease.url }}</td>
+          <td><a :href="lease.url" target="_blank">{{ lease.url }}</a></td>
           <td>{{ leaseEndTime(lease.untilBlock).fromNow() }}</td>
         </tr>
       </tbody>
@@ -171,6 +182,9 @@ export default {
     },
     currentAddress () {
       return this.$store.getters.currentAddress
+    },
+    blockNumber () {
+      return this.$store.getters.blockNumber
     }
   },
   methods: {

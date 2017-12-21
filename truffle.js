@@ -2,8 +2,8 @@ var ganache = require("ganache-cli");
 var HDWalletProvider = require("truffle-hdwallet-provider");
 var dotenv = require('dotenv').config()
 
-var infura_apikey = "ZAG8Wc8qPxdO3cfopRgd";
 var mnemonic = dotenv.parsed.PASSPHRASE;
+var infuraKey = 'KGldez6F33JbsLQy8rhV';
 
 module.exports = {
   networks: {
@@ -17,10 +17,9 @@ module.exports = {
       network_id: "*" // Match any network id
     },
     ropsten: {
-      provider: new HDWalletProvider(mnemonic, "https://ropsten.infura.io/" + infura_apikey, 2),
+      provider: new HDWalletProvider(mnemonic, "https://ropsten.infura.io/" + infuraKey, 0),
       network_id: 3,
       gas: 4700000
-      //gas: 5000000,
     }
   }
 };
