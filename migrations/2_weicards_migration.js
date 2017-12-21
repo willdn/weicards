@@ -9,6 +9,6 @@ module.exports = function(deployer, network, accounts) {
     return
   }
   deployer.deploy(ETHCards, owner, {
-    gasPrice: 24
+    gasPrice: 18
   })
 }
