@@ -36,7 +36,7 @@
     <!-- User Buy -->
     <div v-if="card.availableBuy && !card.owner.startsWith('0x0') && card.owner !== currentAddress" class="extra content">
       <div class="ui grid equal width center aligned"
-           :data-tooltip="`Buy card #${card.id} at ${card.computeInitialPrice().toLocaleString()} Ξ from ${card.owner.substring(0,15)}...`" data-inverted="">
+           :data-tooltip="`Buy card #${card.id} for ${card.computeInitialPrice().toLocaleString()} Ξ from ${card.owner.substring(0,15)}...`" data-inverted="">
         <div class="column green-hover" @click.prevent="buyCard()">
           <i class="fa fa-shopping-cart"></i>
           Buy (<b>{{ card.buyPriceToEther() }} Ξ</b>)
@@ -108,7 +108,7 @@
     <div v-if="!card.isBought()" class="extra content">
       <div class="ui grid equal width center aligned">
         <div class="column green-hover" @click.prevent="buyCard()"
-             :data-tooltip="`Buy card #${card.id} at ${card.computeInitialPrice().toLocaleString()} Ξ`" data-inverted="">
+             :data-tooltip="`Buy card #${card.id} for ${card.computeInitialPrice().toLocaleString()} Ξ`" data-inverted="">
           <i class="fa fa-shopping-cart"></i>
           Buy (<b>{{ card.computeInitialPrice().toLocaleString() }} Ξ</b>)
         </div>
@@ -118,7 +118,7 @@
     <div v-if="card.availableLease && card.owner != currentAddress" class="extra content">
       <div class="ui grid equal width center aligned">
         <div class="column green-hover" @click.prevent="leaseCard()"
-             :data-tooltip="`Lease card #${card.id} at ${leaseTotalAmount} Ξ until ${card.estimatedLeaseEnd().format('LL')}`" data-inverted="">
+             :data-tooltip="`Rent card #${card.id} for ${leaseTotalAmount} Ξ until ${card.estimatedLeaseEnd().format('LL')}`" data-inverted="">
           <i class="fa fa-key"></i>
           <b>{{ leaseTotalAmount }} Ξ</b> / {{ parseInt(card.leaseDuration).toLocaleString() }} blocks
         </div>

@@ -106,7 +106,7 @@
       Card <b>#{{ card.id }}</b> has not been leased yet
     </div>
     <!-- Leases history -->
-    <table v-if="leases.length > 0" class="ui celled unstackable table">
+    <table v-if="card && leasesLoaded && leases.length > 0" class="ui celled unstackable table">
       <thead><tr>
         <th>#</th>
         <th>Title</th>

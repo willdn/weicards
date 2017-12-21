@@ -11,6 +11,9 @@
           Transfer #{{ card.id }} ownership ?
         </h2>
       </div>
+      <div class="ui red message">
+        <b>This cannot be undone. Double-check the ownership recipient ! </b>
+      </div>
       <form class="ui form">
         <div class="field">
           <label>New owner address</label>
