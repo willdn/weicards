@@ -254,7 +254,11 @@ p {
 /* Cards */
 .card-id-label {
   color: rgb(255, 255, 255) !important;
-  background-color: rgba(248, 199, 91, 0.9) !important;
+  background-color: rgba(248, 199, 91, 0.7) !important;
+}
+.card-id-label:hover {
+  color: rgb(255, 255, 255) !important;
+  background-color: rgba(248, 199, 91, 1) !important;
 }
 /*  */
 .error-exclamation {

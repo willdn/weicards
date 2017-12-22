@@ -70,7 +70,7 @@
             the card display your details again. 
           </p>
           <p>
-            <b>Selling</b> a card is as simple as setting a sell price and voilà, your card can now be bought by anyone. The ownership
+            <b>Selling</b> a card is as simple as setting a sale price and voilà, your card can now be bought by anyone. The ownership
             will be transferred to the first buyer and you will be credited of the sale amount !
           </p>
           <p>
@@ -122,7 +122,7 @@
       the blockchain and it remains forever yours. 
       </p>
       <p>
-      The other cool stuff is that you can check the logic behind WeiCard by auditing the Smart Contract. You can have a look at the <a href="">smart contract on Etherscan</a>
+      The other cool stuff is that you can check the logic behind WeiCard by auditing the Smart Contract. You can have a look at the <a href="">contract on Etherscan</a>
       or the front-end hosted on <a target="_blank" href="https://github.com/willdn/weicards"><i class="fab fa-github"></i> Github</a>.
       </p>
 
@@ -314,7 +314,7 @@
         </div>
         <div class="column ten wide">
           <p>Cards available to rent have a <span class="ui orange tiny label"><i class="fa fa-key"></i> Lease</span> ribbon in their top left corner.
-          Just as cards listed on sale, you can either click on this ribbon or the footer card footer
+          Just as cards listed on sale, you can either click on this ribbon or the card footer
           <i class="fa fa-key"></i> < <i>Total amount</i> > Ξ / < <i>Block duration</i> >.
           </p>
           <p>
