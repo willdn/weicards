@@ -8,7 +8,7 @@
       <i class="fa fa-question"></i>
       FAQ
     </router-link>
-    <a href="mailto:weicards127@gmail.com" class="item item-3">
+    <a href="mailto:wei100cards@gmail.com" class="item item-3">
       <i class="fa fa-envelope"></i>
       Contact
     </a>

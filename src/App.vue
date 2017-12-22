@@ -62,7 +62,7 @@ export default {
   },
   data () {
     return {
-      network: 'dev',
+      network: 'ropsten',
       contract: null
     }
   },
@@ -250,6 +250,11 @@ p {
 }
 .far {
   margin-right: 0.25em !important;
+}
+/* Cards */
+.card-id-label {
+  color: rgb(255, 255, 255) !important;
+  background-color: rgba(248, 199, 91, 0.9) !important;
 }
 /*  */
 .error-exclamation {

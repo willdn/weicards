@@ -110,7 +110,7 @@
               </div>
             </div>
           </div>
-          <div class="card-description">Card #15 is owned by 0x627306090ab...</div>
+          <div class="ui segment basic center aligned card-description">Card #15 is owned by 0x627306090ab...</div>
         </div>
       </div>
 
@@ -207,7 +207,7 @@
               </div>
             </div>
           </div>
-          <div class="card-description">This cute little card is available to buy for 1.23 Ξ</div>
+          <div class="ui segment basic center aligned card-description">This cute little card is available to buy for 1.23 Ξ</div>
         </div>
       </div>
 
@@ -264,7 +264,7 @@
               </div>
             </div>
           </div>
-          <div class="card-description">Cards you own have a teal position label
+          <div class="ui segment basic center aligned card-description">Cards you own have a teal position label
             <span class="ui tiny circular label teal"><b>99</b></span>
           </div>
         </div>
@@ -300,8 +300,8 @@
               </div>
               <div class="extra content">
                 <div class="ui grid equal width center aligned">
-                  <div class="column green-hover" @click.prevent="leaseCard()"
-                      :data-tooltip="`Lease card #34 at 0.75 Ξ for 1 000 000 blocks`" data-inverted="">
+                  <div class="column green-hover"
+                      :data-tooltip="`Lease card #34 for 0.75 Ξ until ${lease1EstimatedTime.format('LL')}`" data-inverted="">
                     <i class="fa fa-key"></i>
                     <b>0.75 Ξ</b> / 1 000 000 blocks
                   </div>
@@ -309,7 +309,8 @@
               </div>
             </div>
           </div>
-          <div class="card-description">Card #34 is available for a lease at a total amount of 0.75 Ξ for 1 000 000 blocks.</div>
+          <div class="ui segment basic center aligned card-description">Card #34 is available for a lease at a total amount of 0.75 Ξ for 
+            1 000 000 blocks.</div>
         </div>
         <div class="column ten wide">
           <p>Cards available to rent have a <span class="ui orange tiny label"><i class="fa fa-key"></i> Lease</span> ribbon in their top left corner.
@@ -368,7 +369,7 @@
             your card for each block mined on the network. The duration field is the number of blocks you want to rent out your card, starting
             at the block number when tenant sign the deal. Considering an average block generation time of 15 seconds, 6 000 blocks
             is a day and 1 000 000 blocks is approximately 6 months. The total amount is the product of the block duration and amount per block, this 
-            total amount should be greater than 0.005 Ξ.
+            total amount should be greater than 0.005 Ξ. <i>Note : WeiCards take a 1% cut on the lease total amount.</i> 
           </p>
         </div>
         <div class="column six wide">
@@ -510,18 +511,14 @@ h3 {
   margin-top: 1em !important;
 }
 .card-description {
+  margin-top: 0em;
   font-style: italic;
-  margin-top: 0.75em !important;
 }
 .card {
   max-width: 250px !important;
 }
 .card-image {
   max-height: 100px !important;
-}
-.card-id-label {
-  color: rgba(255, 255, 255, 0.95);
-  background-color: #F8C75B;
 }
 .ui.cards > .card > .content > .header, .ui.card > .content > .header {
   margin-bottom: 0.1em;

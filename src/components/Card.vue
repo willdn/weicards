@@ -91,7 +91,7 @@
         </div>
         <!-- Cancel lease -->
         <div class="column red-hover" v-if="card.availableLease"
-             :data-tooltip="`Cancel card #${card.id} rent out (${leaseTotalAmount} Ξ / ${card.leaseDuration.toLocaleString()} blocks)`" data-inverted=""
+             :data-tooltip="`Cancel card #${card.id} rent out (${leaseTotalAmount} Ξ / ${parseInt(card.leaseDuration).toLocaleString()} blocks)`" data-inverted=""
              @click.prevent="cancelLeaseOffer()">
           <i class="fa fa-times"></i>
            Cancel rent out
@@ -220,10 +220,6 @@ export default {
 }
 .image {
   max-height: 93px !important;
-}
-.card-id-label {
-  color: rgba(255, 255, 255, 0.95);
-  background-color: #F8C75B;
 }
 .green-hover:hover {
   margin-top: 0.25em;

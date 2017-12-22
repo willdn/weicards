@@ -265,8 +265,8 @@ export default {
     }
   },
   mounted () {
+    if (!this.$route.params.id) return false
     this.id = parseInt(this.$route.params.id)
-    if (!this.id) return false
     this.getCard()
     if (this.contract != null) {
       this.buildLeasesList()

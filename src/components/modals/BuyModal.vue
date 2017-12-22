@@ -6,10 +6,15 @@
     @before-open="beforeOpen"
     @closed="closed">
     <div v-if="!txWait" class="buy-modal">
+      <!-- Header -->
       <div v-if="card" class="ui container center aligned">
         <h2 class="ui header">
           <i class="fa fa-shopping-cart"></i>
-          Buy #{{ card.id }}
+          Buy
+          <router-link target="_blank" :to="{ name: 'CardDetails', params: { id: card.id } }"
+            :data-tooltip="`View card #${card.id} details`" data-inverted="" data-position="right center">
+            #{{ card.id }}
+          </router-link>
         </h2>
       </div>
       <div class="ui container">
