@@ -8,7 +8,7 @@
     </div>
 
     <div class="ui segment raised">
-      <div class="ui link list">
+      <div class="ui link selection animated list">
         <div class="item">
           WeiCards
           <div class="list">
@@ -159,14 +159,14 @@
           </p>
           <p>
           You will need to provide 3 things :
-            <ul>
-              <li><b>Title: </b> This is the title of your card, it can describe anything you want.
-              Title must be less than 40 characters.</li>
-              <li><b>URL: </b> URL to redirect to when visitors click on your card.</li>
-              <li><b>Image: </b> URL of the image you want to display within the card.
-              Images can be of any types supported by browsers (<i>e.g.</i> PNG, JPG, SVG <i>etc.</i>).
-              Try to use an image as lightweight as possible.</li>
-            </ul>
+            <div class="ui list buy-list">
+              <div class="item"><i class="fa fa-bars"></i> <b>Title: </b> Title of your card, it can describe anything you want.
+              Title must be less than 40 characters and greater than 3.</div><br />
+              <div class="item"><i class="fa fa-link"></i> <b>URL: </b> URL to redirect to when visitors click on your card.</div><br />
+              <div class="item"><i class="far fa-image"></i> <b>Image: </b> URL of the image you want to display within the card.
+              Image can be of any types supported by browsers (<i>e.g.</i> PNG, JPG, SVG <i>etc.</i>).
+              Try to use an image as lightweight as possible.</div>
+            </div>
           <div class="ui orange message">
             <b>Note</b> : the more your URL and image URL are longer, the more<b> you are paying</b> in fee !
             This is inherent to the Ethereum blockchain design.
@@ -230,6 +230,10 @@
             Card may be sold even if they are leased, as you have already been credited of the total lease amount. You are also able to
             <router-link :to="{ name: 'FAQ', hash: '#edit-card' }" >edit</router-link> them, your updated details will be displayed once lease
             is over.
+          </p>
+          <p>
+            If you changed your mind and want to keep your card, you can cancel the card sale by hitting <br /> 
+            <i class="fa fa-times"></i> <b>Cancel sale </b> (<i> < Card sale price ></i> Ξ) in card footer or card <i class="fa fa-cogs"></i> <b>Settings</b>.
           </p>
         </div>
         <div class="column six wide">
@@ -367,9 +371,16 @@
           <p>
             You will be asked to enter the amount per block in Wei. This amount represents the price you are asking to lease 
             your card for each block mined on the network. The duration field is the number of blocks you want to rent out your card, starting
-            at the block number when tenant sign the deal. Considering an average block generation time of 15 seconds, 6 000 blocks
+            at the block number when tenant sign the deal.
+          </p>
+          <p> 
+            Considering an average block generation time of 15 seconds, 6 000 blocks
             is a day and 1 000 000 blocks is approximately 6 months. The total amount is the product of the block duration and amount per block, this 
             total amount should be greater than 0.005 Ξ. <i>Note : WeiCards take a 1% cut on the lease total amount.</i> 
+          </p>
+          <p>
+            You can cancel rent out by selecting <i class="fa fa-times"></i> <b>Cancel rent out</b> in card footer or in card
+            <i class="fa fa-cogs"></i> <b>Settings</b> > <i class="fa fa-times"></i> <b>Cancel rent out</b>.
           </p>
         </div>
         <div class="column six wide">
@@ -421,7 +432,7 @@
       </h2>
       <p>To transfer a card ownership to another address, go to card details page and select
          <i class="fa fa-cogs"></i> <b>Settings</b> > <i class="fa fa-exchange-alt"></i> <b>Transfer</b>.
-         You will then be prompted to enter the address of the new card owner. This can be used if your account has been
+         You will then be prompted to enter the address of the new card owner. This can be used if the account owning the cards has been
          compromised.
       </p>
       <div class="ui orange message">
@@ -522,6 +533,10 @@ h3 {
 }
 .ui.cards > .card > .content > .header, .ui.card > .content > .header {
   margin-bottom: 0.1em;
+}
+.buy-list {
+  margin-left: 0.5em;
+  color: rgba(0,0,0,.70) !important;
 }
 .green-hover:hover {
   margin-top: 0.25em;
