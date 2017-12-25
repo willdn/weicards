@@ -3,10 +3,16 @@ var HDWalletProvider = require("truffle-hdwallet-provider");
 var dotenv = require('dotenv').config()
 
 var mnemonic = dotenv.parsed.PASSPHRASE;
-var infuraKey = 'KGldez6F33JbsLQy8rhV';
+var infuraKey = 'zm7XFtEaEGMvVUpcVPbQ';
 
 module.exports = {
   networks: {
+    live: {
+      provider: new HDWalletProvider(mnemonic, "https://mainnet.infura.io/" + infuraKey, 0),
+      network_id: 1,
+      gasPrice: "10000000000",
+      gas: "5000000"
+    },
     development: {
       host: "localhost",
       port: 7545,
