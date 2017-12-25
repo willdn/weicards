@@ -1,6 +1,6 @@
 <template>
   <footer class="ui four item stackable menu">
-    <a class="item item-1">
+    <a target="_blank" href="https://etherscan.io/address/0x7f57292bf494a8c9342d37395d1378a65d59c499" class="item item-1">
       <i class="fa fa-file"></i>
       Contract
     </a>

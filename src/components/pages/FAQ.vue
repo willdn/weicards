@@ -122,7 +122,7 @@
       the blockchain and it remains forever yours. 
       </p>
       <p>
-      The other cool stuff is that you can check the logic behind WeiCard by auditing the Smart Contract. You can have a look at the <a href="">contract on Etherscan</a>
+      The other cool stuff is that you can check the logic behind WeiCard by auditing the Smart Contract. You can have a look at the <a target="_blank" href="https://etherscan.io/address/0x7f57292bf494a8c9342d37395d1378a65d59c499">contract on Etherscan</a>
       or the front-end hosted on <a target="_blank" href="https://github.com/willdn/weicards"><i class="fab fa-github"></i> Github</a>.
       </p>
 
