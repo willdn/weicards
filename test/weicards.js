@@ -1,9 +1,5 @@
 const ETHCards = artifacts.require('./WeiCards.sol')
 
-function computeInitialPrice (index) {
-  return 1280000000000000000 - (10000000000000000 * index)
-}
-
 contract('WeiCards', (accounts) => {
   const owner = accounts[0]
   const withdrawWallet = accounts[1]
@@ -16,7 +12,7 @@ contract('WeiCards', (accounts) => {
     return ETHCards.new(owner)
       .then(function(instance) {
         APP = instance
-        return APP.buyCard(5, 'test1', 'url', 'imgurl', {from: account1, value: 1230000000000000000})
+        return APP.buyCard(5, 'test1', 'url', 'imgurl', {from: account1, value: 960000000000000000})
       })
       .catch(function(error) {
          assert(error.message == 'VM Exception while processing transaction: revert')
@@ -28,10 +24,10 @@ contract('WeiCards', (accounts) => {
     return ETHCards.new(owner)
       .then(function(instance) {
         APP = instance
-        return APP.initialBuyCard(5, 'test1', 'url', 'imgurl', {from: account1, value: 1220000000000000000})
+        return APP.initialBuyCard(5, 'test1', 'url', 'imgurl', {from: account1, value: 950000000000000000})
       })
       .catch(function(error) {
-         assert(error.message == 'VM Exception while processing transaction: revert')
+         assert.equal(error.message, 'VM Exception while processing transaction: revert')
       })
   })
 
@@ -41,7 +37,7 @@ contract('WeiCards', (accounts) => {
     return ETHCards.new(owner)
       .then(function(instance) {
         APP = instance
-        return APP.initialBuyCard(5, 'test1', 'url', 'imgurl', {from: account1, value: 1230000000000000000})
+        return APP.initialBuyCard(5, 'test1', 'url', 'imgurl', {from: account1, value: 960000000000000000})
       })
       .then(function(res) {
          return APP.getCard(5)
@@ -52,14 +48,14 @@ contract('WeiCards', (accounts) => {
       })
       .then(function(res) {
         // Another account can't initialBuy
-        return APP.initialBuyCard(5, 'test2', 'url2', 'imgurl2', {from: account2, value: 1250000000000000000})
+        return APP.initialBuyCard(5, 'test2', 'url2', 'imgurl2', {from: account2, value: 970000000000000000})
       })
       .catch(function(error) {
          assert(error.message == 'VM Exception while processing transaction: revert')
       })
       .then(function(res) {
         // Another account can't buy
-        return APP.buyCard(5, 'test2', 'url2', 'imgurl2', {from: account2, value: 1250000000000000000})
+        return APP.buyCard(5, 'test2', 'url2', 'imgurl2', {from: account2, value: 970000000000000000})
       })
       .catch(function(error) {
          assert(error.message == 'VM Exception while processing transaction: revert')
@@ -71,11 +67,11 @@ contract('WeiCards', (accounts) => {
     return ETHCards.new(owner)
       .then(function(instance) {
         APP = instance
-        APP.initialBuyCard(5, 'test1', 'url', 'imgurl', {from: account1, value: 1230000000000000000})
+        APP.initialBuyCard(5, 'test1', 'url', 'imgurl', {from: account1, value: 960000000000000000})
         return APP.getCardDetails(5)
       })
       .then(function(res) {
-        assert.equal(res[1].toNumber(), 1230000000000000000) //price
+        assert.equal(res[1].toNumber(), 960000000000000000) //price
         assert.equal(res[2].toNumber(), 0) //priceLease
         assert.equal(res[3].toNumber(), 0) //leaseDuration
         assert.equal(res[4], false) //availableBuy
@@ -88,16 +84,16 @@ contract('WeiCards', (accounts) => {
     return ETHCards.new(owner)
       .then(function(instance) {
         APP = instance
-        APP.initialBuyCard(5, 'test2', 'url2', 'imgurl2', {from: account1, value: 1230000000000000000})
-        APP.initialBuyCard(6, 'test2', 'url2', 'imgurl2', {from: account1, value: 1220000000000000000})
+        APP.initialBuyCard(5, 'test2', 'url2', 'imgurl2', {from: account1, value: 960000000000000000})
+        APP.initialBuyCard(6, 'test2', 'url2', 'imgurl2', {from: account1, value: 950000000000000000})
         return APP.getBalance({from: owner })
       })
       .then(function(res) {
-        assert.equal(res.toNumber(), 2205000000000000000)
+        assert.equal(res.toNumber(), 1719000000000000000)
         return APP.getBalance({from: giveETH })
       })
       .then(function(res) {
-        assert.equal(res.toNumber(), 245000000000000000)
+        assert.equal(res.toNumber(), 191000000000000000)
       })
   })
 
@@ -106,7 +102,7 @@ contract('WeiCards', (accounts) => {
     return ETHCards.new(owner)
       .then(function(instance) {
         APP = instance
-        APP.initialBuyCard(5, 'test2', 'url2', 'imgurl2', {from: account1, value: 1230000000000000000})
+        APP.initialBuyCard(5, 'test2', 'url2', 'imgurl2', {from: account1, value: 960000000000000000})
         return APP.setNSFW(5, true, { from: account1 })
       })
       .catch(function(error) {
@@ -124,10 +120,10 @@ contract('WeiCards', (accounts) => {
     return ETHCards.new(owner)
       .then(function(instance) {
         APP = instance
-        APP.initialBuyCard(5, 'test2', 'url2', 'imgurl2', {from: account1, value: 1230000000000000000})
+        APP.initialBuyCard(5, 'test2', 'url2', 'imgurl2', {from: account1, value: 960000000000000000})
         APP.setNSFW(5, true, { from: owner })
-        APP.sellCard(5, 1250000000000000000, {from: account1 })
-        APP.buyCard(5, 'test2', 'url2', 'imgurl2', {from: account2, value: 1250000000000000000})
+        APP.sellCard(5, 990000000000000000, {from: account1 })
+        APP.buyCard(5, 'test2', 'url2', 'imgurl2', {from: account2, value: 990000000000000000})
         return APP.getCard(5)
       })
       .then((res) => {
@@ -140,12 +136,12 @@ contract('WeiCards', (accounts) => {
     return ETHCards.new(owner)
       .then(function(instance) {
         APP = instance
-        APP.initialBuyCard(5, 'test2', 'url2', 'imgurl2', {from: account1, value: 1230000000000000000})
-        APP.sellCard(5, 1250000000000000000, {from: account1 })
+        APP.initialBuyCard(5, 'test2', 'url2', 'imgurl2', {from: account1, value: 960000000000000000})
+        APP.sellCard(5, 1000000000000000000, {from: account1 })
         return APP.getCardDetails(5)
       })
       .then(function(res) {
-        assert(res[1].toNumber() == 1250000000000000000)
+        assert(res[1].toNumber() == 1000000000000000000)
       })
   })
 
@@ -154,8 +150,8 @@ contract('WeiCards', (accounts) => {
     return ETHCards.new(owner)
       .then(function(instance) {
         APP = instance
-        APP.initialBuyCard(5, 'test2', 'url2', 'imgurl2', {from: account1, value: 1230000000000000000})
-        return APP.sellCard(5, 100000000000000000, {from: account2 })
+        APP.initialBuyCard(5, 'test2', 'url2', 'imgurl2', {from: account1, value: 960000000000000000})
+        return APP.sellCard(5, 560000000000000000, {from: account2 })
       })
       .catch(function(error) {
         assert(error.message == 'VM Exception while processing transaction: revert')
@@ -167,9 +163,9 @@ contract('WeiCards', (accounts) => {
     return ETHCards.new(owner)
       .then(function(instance) {
         APP = instance
-        APP.initialBuyCard(5, 'test2', 'url2', 'imgurl2', {from: account1, value: 1230000000000000000})
-        APP.sellCard(5, 1250000000000000000, {from: account1 })
-        return APP.buyCard(5, 'test2', 'url2', 'imgurl2', {from: account2, value: 1230000000000000000})
+        APP.initialBuyCard(5, 'test2', 'url2', 'imgurl2', {from: account1, value: 960000000000000000})
+        APP.sellCard(5, 990000000000000000, {from: account1 })
+        return APP.buyCard(5, 'test2', 'url2', 'imgurl2', {from: account2, value: 960000000000000000})
       })
       .catch(function(error) {
         assert(error.message == 'VM Exception while processing transaction: revert')
@@ -205,8 +201,8 @@ contract('WeiCards', (accounts) => {
     return ETHCards.new(owner)
       .then(function(instance) {
         APP = instance
-        APP.initialBuyCard(5, 'test2', 'url2', 'imgurl2', {from: account1, value: 1230000000000000000})
-        APP.initialBuyCard(6, 'test2', 'url2', 'imgurl2', {from: account1, value: 1220000000000000000})
+        APP.initialBuyCard(5, 'test2', 'url2', 'imgurl2', {from: account1, value: 960000000000000000})
+        APP.initialBuyCard(6, 'test2', 'url2', 'imgurl2', {from: account1, value: 950000000000000000})
         APP.withdraw({from: owner })
         return APP.getBalance({from: owner })
       })
@@ -220,7 +216,7 @@ contract('WeiCards', (accounts) => {
     return ETHCards.new(owner)
       .then(function(instance) {
         APP = instance
-        APP.initialBuyCard(5, 'test2', 'url2', 'imgurl2', {from: account1, value: 1230000000000000000})
+        APP.initialBuyCard(5, 'test2', 'url2', 'imgurl2', {from: account1, value: 960000000000000000})
         return APP.transferCardOwnership(account2, 5, {from: account2 })
       })
       .catch(function(error) {
@@ -239,7 +235,7 @@ contract('WeiCards', (accounts) => {
     return ETHCards.new(owner)
       .then(function(instance) {
         APP = instance
-        APP.initialBuyCard(5, 'test2', 'url2', 'imgurl2', {from: account1, value: 1230000000000000000})
+        APP.initialBuyCard(5, 'test2', 'url2', 'imgurl2', {from: account1, value: 960000000000000000})
         APP.transferCardOwnership(account2, 5, {from: account1 })
         return APP.getCard(5)
       })
@@ -258,13 +254,13 @@ contract('WeiCards', (accounts) => {
       .then((res) => {
         // At beginning, it should be available (=initial sell)
         assert.equal(res[4], true)
-        APP.initialBuyCard(5, 'test2', 'url2', 'imgurl2', {from: account1, value: 1230000000000000000})
+        APP.initialBuyCard(5, 'test2', 'url2', 'imgurl2', {from: account1, value: 960000000000000000})
         return APP.getCardDetails(5)
       })
       .then((res) => {
         // When initial sell done, it should not be available
         assert.equal(res[4], false)
-        APP.sellCard(5, 1000000000000000000, {from: account1 })
+        APP.sellCard(5, 990000000000000000, {from: account1 })
         return APP.getCardDetails(5)
       })
       .then((res) => {
@@ -279,8 +275,8 @@ contract('WeiCards', (accounts) => {
     return ETHCards.new(owner)
       .then(function(instance) {
         APP = instance
-        APP.initialBuyCard(5, 'test2', 'url2', 'imgurl2', {from: account1, value: 1230000000000000000})
-        APP.sellCard(5, 1000000000000000000, {from: account1 })
+        APP.initialBuyCard(5, 'test2', 'url2', 'imgurl2', {from: account1, value: 960000000000000000})
+        APP.sellCard(5, 990000000000000000, {from: account1 })
         return APP.cancelSellCard(5, {from: account2 })
       })
       .catch(function(error) {
@@ -299,7 +295,7 @@ contract('WeiCards', (accounts) => {
     return ETHCards.new(owner)
       .then((instance) => {
         APP = instance
-        APP.initialBuyCard(5, 'test1', 'url', 'imgurl', {from: account1, value: 1230000000000000000})
+        APP.initialBuyCard(5, 'test1', 'url', 'imgurl', {from: account1, value: 960000000000000000})
         return APP.setLeaseCard(5, 12300000000000, 400,  { from: account2 })
       })
       .catch((error) => {
@@ -320,8 +316,8 @@ contract('WeiCards', (accounts) => {
     return ETHCards.new(owner)
       .then((instance) => {
         APP = instance
-        APP.initialBuyCard(5, 'test1', 'url', 'imgurl', {from: account1, value: 1230000000000000000})
-        APP.setLeaseCard(5, 12300000000000, 400,  { from: account1 })
+        APP.initialBuyCard(5, 'test1', 'url', 'imgurl', {from: account1, value: 960000000000000000})
+        APP.setLeaseCard(5, 960000000000000, 400,  { from: account1 })
       })
       .catch((error) => {
         assert(error.message == 'VM Exception while processing transaction: revert')
@@ -333,8 +329,8 @@ contract('WeiCards', (accounts) => {
     return ETHCards.new(owner)
       .then((instance) => {
         APP = instance
-        APP.initialBuyCard(5, 'test1', 'url', 'imgurl', {from: account1, value: 1230000000000000000})
-        APP.sellCard(5, 1000000000000000000, {from: account1 })
+        APP.initialBuyCard(5, 'test1', 'url', 'imgurl', {from: account1, value: 960000000000000000})
+        APP.sellCard(5, 990000000000000000, {from: account1 })
         return APP.setLeaseCard(5, 12300000000000, 400,  { from: account1 })
       })
       .catch((error) => {
@@ -347,7 +343,7 @@ contract('WeiCards', (accounts) => {
     return ETHCards.new(owner)
       .then((instance) => {
         APP = instance
-        APP.initialBuyCard(5, 'test1', 'url', 'imgurl', {from: account1, value: 1230000000000000000})
+        APP.initialBuyCard(5, 'test1', 'url', 'imgurl', {from: account1, value: 960000000000000000})
         APP.setLeaseCard(5, 25000000000000, 4000,  { from: account1 })
         APP.leaseCard(5, 'testLEASE', 'urlLEASE', 'imgLEASE', {from: account2, value: 100000000000000000})
         return APP.leaseCard(5, 'testLEASE2', 'urlLEASE2', 'imgLEASE2', {from: owner, value: 100000000000000000})
@@ -362,8 +358,8 @@ contract('WeiCards', (accounts) => {
     return ETHCards.new(owner)
       .then((instance) => {
         APP = instance
-        APP.initialBuyCard(5, 'test1', 'url', 'imgurl', {from: account1, value: 1230000000000000000})
-        return APP.leaseCard(5, 'test1', 'url', 'imgurl', {from: account2, value: 1230000000000000000})
+        APP.initialBuyCard(5, 'test1', 'url', 'imgurl', {from: account1, value: 960000000000000000})
+        return APP.leaseCard(5, 'test1', 'url', 'imgurl', {from: account2, value: 960000000000000000})
       })
       .catch((error) => {
         assert(error.message == 'VM Exception while processing transaction: revert')
@@ -375,7 +371,7 @@ contract('WeiCards', (accounts) => {
     return ETHCards.new(owner)
       .then((instance) => {
         APP = instance
-        APP.initialBuyCard(5, 'test1', 'url', 'imgurl', {from: account1, value: 1230000000000000000})
+        APP.initialBuyCard(5, 'test1', 'url', 'imgurl', {from: account1, value: 960000000000000000})
         APP.setLeaseCard(5, 25000000000000, 4000,  { from: account1 })
         return APP.leaseCard(5, 'test1', 'url', 'imgurl', {from: account2, value: 99999999999999980})
       })
@@ -389,7 +385,7 @@ contract('WeiCards', (accounts) => {
     return ETHCards.new(owner)
       .then((instance) => {
         APP = instance
-        APP.initialBuyCard(5, 'test1', 'url', 'imgurl', {from: account1, value: 1230000000000000000})
+        APP.initialBuyCard(5, 'test1', 'url', 'imgurl', {from: account1, value: 960000000000000000})
         APP.setLeaseCard(5, 25000000000000, 4000,  { from: account1 })
         APP.leaseCard(5, 'testLEASE', 'urlLEASE', 'imgLEASE', {from: account2, value: 100000000000000000})
         return APP.getLastLease(5)
@@ -408,7 +404,7 @@ contract('WeiCards', (accounts) => {
     return ETHCards.new(owner)
       .then((instance) => {
         APP = instance
-        APP.initialBuyCard(5, 'test1', 'url', 'imgurl', {from: account1, value: 1230000000000000000})
+        APP.initialBuyCard(5, 'test1', 'url', 'imgurl', {from: account1, value: 960000000000000000})
         APP.setLeaseCard(5, 25000000000000, 4000,  { from: account1 })
         APP.cancelLeaseOffer(5, {from: account1 })
         return APP.getCardDetails(5)
@@ -423,7 +419,7 @@ contract('WeiCards', (accounts) => {
     return ETHCards.new(owner)
       .then((instance) => {
         APP = instance
-        APP.initialBuyCard(5, 'test1', 'url', 'imgurl', {from: account1, value: 1230000000000000000})
+        APP.initialBuyCard(5, 'test1', 'url', 'imgurl', {from: account1, value: 960000000000000000})
         APP.withdraw({ from: owner }) // Reset contract owner balance
         APP.setLeaseCard(5, 25000000000000, 4000,  { from: account1 })
         APP.leaseCard(5, 'testLEASE', 'urlLEASE', 'imgLEASE', {from: account2, value: 100000000000000000})
@@ -443,7 +439,7 @@ contract('WeiCards', (accounts) => {
     return ETHCards.new(owner)
       .then((instance) => {
         APP = instance
-        APP.initialBuyCard(5, 'test1', 'url', 'imgurl', {from: account1, value: 1230000000000000000})
+        APP.initialBuyCard(5, 'test1', 'url', 'imgurl', {from: account1, value: 960000000000000000})
         return APP.editCard(5, 'NotPossible', 'ToDo', 'This', {from: account2})
       })
       .catch((error) => {
@@ -456,7 +452,7 @@ contract('WeiCards', (accounts) => {
     return ETHCards.new(owner)
       .then((instance) => {
         APP = instance
-        APP.initialBuyCard(5, 'test1', 'url', 'imgurl', {from: account1, value: 1230000000000000000})
+        APP.initialBuyCard(5, 'test1', 'url', 'imgurl', {from: account1, value: 960000000000000000})
         APP.editCard(5, 'ModifiedTitle', 'ModifiedURL', 'img', {from: account1})
         return APP.getCard(5)
       })
@@ -474,7 +470,7 @@ contract('WeiCards', (accounts) => {
     return ETHCards.new(owner)
       .then(function(instance) {
         APP = instance
-        for(i = 1 i <= 127 i++) {
+        for(i = 1 i <= 100 i++) {
           const price = computeInitialPrice(i)
           APP.initialBuyCard(i, 'test' + i, 'url'+i, 'imgurl', {from: account1, value: price})
         }

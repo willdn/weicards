@@ -49,8 +49,7 @@
         How it works ?
       </h2>
       <p>WeiCards let you <router-link :to="{ name: 'FAQ', hash: '#buy-card' }" >buy</router-link>, <router-link :to="{ name: 'FAQ', hash: '#lease-card' }" >lease</router-link> and <router-link :to="{ name: 'FAQ', hash: '#sell-card' }" >sell</router-link> cards.
-      WeiCards homepage is filled with cards ranked from 1 to 127, no more, no less. Each card is initially
-      sold at a price related to its rank, the card #1 is initially sold at 1.27 Ether and card #127 is set at 0.01 Ether.
+      WeiCards homepage is filled with cards ranked from 1 to 100. Each card is sold at a price related to its rank, the card #1 is initially sold at 1 Ether and card #100 is set at 0.01 Ether.
       A card is made from a descriptive title, a redirection URL and an image set by the card owner.
       For each card sold during the initial sale, <b>10% of the amount is reversed to <router-link :to="{ name: 'FAQ', hash: '#what-is-giveth' }" >Giveth</router-link></b> !
       </p>
@@ -68,18 +67,19 @@
           <p>
             You can <b>rent out</b> your card to someone willing to rent it. As owner, you will get the total rent amount beforehand.
             During the lease, the card will display and redirect to the details provided by the tenant. Once the lease end,
-            the card display your card details again. 
+            the card display your details again. 
           </p>
           <p>
-            <b>Selling</b> a card is as simple as setting a sell price and voilà, your card can now be bought by anyone.
+            <b>Selling</b> a card is as simple as setting a sale price and voilà, your card can now be bought by anyone. The ownership
+            will be transferred to the first buyer and you will be credited of the sale amount !
           </p>
           <p>
-            You can <b>edit</b> your cards at any time in the card settings 
+            You can <b>edit</b> your cards at any time in the card <i class="fa fa-cogs"></i> <b>Settings</b> 
             (click on card position <span class="ui tiny circular label card-id-label" :data-tooltip="`View card #15 details`" data-inverted=""><b>15</b></span>
             to display its details and settings). From there, you may also <b>transfer the ownership</b> of your card.
           </p>
           <p>
-            Finally, you can just <b>leave</b> your card(s) with your details and strut around that you own one (or more !) of 127 unique cards.
+            Finally, you can just <b>leave</b> your card(s) with your details and strut around that you own one (or more !) of 100 unique cards.
           </p>
         </div>
         <div class="column six wide center">
@@ -110,7 +110,7 @@
               </div>
             </div>
           </div>
-          <div class="card-description">Card #15 is owned by 0x627306090ab...</div>
+          <div class="ui segment basic center aligned card-description">Card #15 is owned by 0x627306090ab...</div>
         </div>
       </div>
 
@@ -118,23 +118,23 @@
         So, what's the deal ?
       </h2>
       <p>Although WeiCards looks like a regular website, it's not one, it's a Decentralized Applications (ÐApps). Cards are not loaded from our database (we do not host anything) but instead directly loaded from the Ethereum blockchain.
-      This blockchain acts like a decentralized database where everyone can see it's state and cannot be tampered. Once you acquired a card, it is written in
+      This blockchain acts like a decentralized database where everyone can see its state and cannot be tampered by anyone. Once you acquired a card, it is written in
       the blockchain and it remains forever yours. 
       </p>
       <p>
-      The other cool stuff is that you can check the logic behind WeiCard by auditing the Smart Contract. You can have a look at the <a href="">smart contract on Etherscan</a>
-      and the front-end hosted on <a target="_blank" href="https://github.com/willdn/weicards"><i class="fab fa-github"></i> Github</a>.
+      The other cool stuff is that you can check the logic behind WeiCard by auditing the Smart Contract. You can have a look at the <a target="_blank" href="https://etherscan.io/address/0x7f57292bf494a8c9342d37395d1378a65d59c499">contract on Etherscan</a>
+      or the front-end hosted on <a target="_blank" href="https://github.com/willdn/weicards"><i class="fab fa-github"></i> Github</a>.
       </p>
 
       <h2 class="ui header" id="what-do-i-need">
         What do I need ?
       </h2>
-      <p>You only need a browser to view cards. However, you will need <a href="https://metamask.io/">MetaMask</a> to buy, lease and sell cards.
-      <a href="https://metamask.io/">MetaMask</a> is a browser (<i class="fab fa-chrome"></i> Chrome and <i class="fab fa-firefox"></i> Firefox) plugin that bridge the Ethereum blockchain 
+      <p>You only need a browser to view cards and cards details. However, you will need <a href="https://metamask.io/">MetaMask</a> to buy, lease and sell cards.
+      MetaMask is a browser (<i class="fab fa-chrome"></i> Chrome and <i class="fab fa-firefox"></i> Firefox) plugin that bridge the Ethereum blockchain 
       and is the easiest way to interact with Smart Contract.</p>
       <p>
-        This plugin provides you a wallet where you can send some Ether (Ξ) and will be your login access to buy, lease and sell cards ! Thus, there is no registration nor login form, just
-        unlock a wallet on MetaMask and you have now access to every WeiCards features.
+        This plugin provides a wallet where you can send some Ether (Ξ) in order to execute operations. This plugin is your only <b>login access</b> to buy, lease and sell cards !
+        Thus, there is no registration nor login form, just install and unlock a wallet on MetaMask and you have now access to every WeiCards features.
       </p>
       <p>
         The following video gives an introduction and a setup guide for MetaMask :
@@ -165,7 +165,7 @@
               <li><b>URL: </b> URL to redirect to when visitors click on your card.</li>
               <li><b>Image: </b> URL of the image you want to display within the card.
               Images can be of any types supported by browsers (<i>e.g.</i> PNG, JPG, SVG <i>etc.</i>).
-              Try to use an image with a 16:9 ratio and as lightweight as possible.</li>
+              Try to use an image as lightweight as possible.</li>
             </ul>
           <div class="ui orange message">
             <b>Note</b> : the more your URL and image URL are longer, the more<b> you are paying</b> in fee !
@@ -207,7 +207,7 @@
               </div>
             </div>
           </div>
-          <div class="card-description">This cute little card is available to buy for 1.23 Ξ</div>
+          <div class="ui segment basic center aligned card-description">This cute little card is available to buy for 1.23 Ξ</div>
         </div>
       </div>
 
@@ -264,7 +264,7 @@
               </div>
             </div>
           </div>
-          <div class="card-description">Cards you own has a teal position label
+          <div class="ui segment basic center aligned card-description">Cards you own have a teal position label
             <span class="ui tiny circular label teal"><b>99</b></span>
           </div>
         </div>
@@ -300,8 +300,8 @@
               </div>
               <div class="extra content">
                 <div class="ui grid equal width center aligned">
-                  <div class="column green-hover" @click.prevent="leaseCard()"
-                      :data-tooltip="`Lease card #34 at 0.75 Ξ for 1 000 000 blocks`" data-inverted="">
+                  <div class="column green-hover"
+                      :data-tooltip="`Lease card #34 for 0.75 Ξ until ${lease1EstimatedTime.format('LL')}`" data-inverted="">
                     <i class="fa fa-key"></i>
                     <b>0.75 Ξ</b> / 1 000 000 blocks
                   </div>
@@ -309,11 +309,12 @@
               </div>
             </div>
           </div>
-          <div class="card-description">Card #34 is available for a lease at a total amount of 0.75 Ξ for 1 000 000 blocks.</div>
+          <div class="ui segment basic center aligned card-description">Card #34 is available for a lease at a total amount of 0.75 Ξ for 
+            1 000 000 blocks.</div>
         </div>
         <div class="column ten wide">
           <p>Cards available to rent have a <span class="ui orange tiny label"><i class="fa fa-key"></i> Lease</span> ribbon in their top left corner.
-          Just as cards listed on sale, you can either click on this ribbon or the footer card footer
+          Just as cards listed on sale, you can either click on this ribbon or the card footer
           <i class="fa fa-key"></i> < <i>Total amount</i> > Ξ / < <i>Block duration</i> >.
           </p>
           <p>
@@ -368,7 +369,7 @@
             your card for each block mined on the network. The duration field is the number of blocks you want to rent out your card, starting
             at the block number when tenant sign the deal. Considering an average block generation time of 15 seconds, 6 000 blocks
             is a day and 1 000 000 blocks is approximately 6 months. The total amount is the product of the block duration and amount per block, this 
-            total amount should be greater than 0.005 Ξ.
+            total amount should be greater than 0.005 Ξ. <i>Note : WeiCards take a 1% cut on the lease total amount.</i> 
           </p>
         </div>
         <div class="column six wide">
@@ -459,7 +460,7 @@
       <h2 class="ui header" id="who-are-you">
         Who are you ?
       </h2>
-      <p>I'm a Computer Science student from Belgium. I'm into blockchain technology since mid 2017 and this is my first Smart Contract
+      <p>I'm a Computer Science student from Belgium. I'm into blockchain technology since early 2017 and this is my first Smart Contract
         published on the Ethereum blockchain ! 
       </p>
 
@@ -510,8 +511,8 @@ h3 {
   margin-top: 1em !important;
 }
 .card-description {
+  margin-top: 0em;
   font-style: italic;
-  margin-top: 0.75em !important;
 }
 .card {
   max-width: 250px !important;
@@ -519,11 +520,22 @@ h3 {
 .card-image {
   max-height: 100px !important;
 }
-.card-id-label {
-  color: rgba(255, 255, 255, 0.95);
-  background-color: #F8C75B;
-}
 .ui.cards > .card > .content > .header, .ui.card > .content > .header {
   margin-bottom: 0.1em;
+}
+.green-hover:hover {
+  margin-top: 0.25em;
+  margin-bottom: 0.25em;
+  background-color: rgba(33, 186, 69, 0.2) ;
+}
+.red-hover:hover {
+  margin-top: 0.25em;
+  margin-bottom: 0.25em;
+  background-color: rgba(219, 40, 40, 0.2);
+}
+.orange-hover:hover {
+  margin-top: 0.25em;
+  margin-bottom: 0.25em;
+  background-color: rgba(242, 113, 28, 0.2);
 }
 </style>

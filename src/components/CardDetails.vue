@@ -85,7 +85,10 @@
          @click.prevent="setLeaseCard()">
         <i class="fa fa-key"></i> Rent out
       </a>
-      <a class="column blue-hover" href=""><i class="fa fa-wrench"></i> Edit</a>
+      <a class="column blue-hover" href=""
+         @click.prevent="edit()">
+        <i class="fa fa-wrench"></i> Edit
+      </a>
       <a class="column teal-hover" href=""
          @click.prevent="transferOwnership()">
         <i class="fa fa-exchange-alt"></i> Transfer
@@ -103,7 +106,7 @@
       Card <b>#{{ card.id }}</b> has not been leased yet
     </div>
     <!-- Leases history -->
-    <table v-if="leases.length > 0" class="ui celled unstackable table">
+    <table v-if="card && leasesLoaded && leases.length > 0" class="ui celled unstackable table">
       <thead><tr>
         <th>#</th>
         <th>Title</th>
@@ -133,6 +136,7 @@
       </tfoot>
     </table>
     <!-- Modals -->
+    <edit-modal></edit-modal>
     <transfer-ownership-modal></transfer-ownership-modal>
   </div>
 </template>
@@ -144,13 +148,15 @@ import Card from '@/components/Card'
 import Loader from '@/components/layouts/Loader'
 // Modals
 import TransferOwnershipModal from '@/components/modals/TransferOwnershipModal'
+import EditModal from '@/components/modals/EditModal'
 
 export default {
   name: 'cardDetails',
   components: {
     Loader,
     Card,
-    TransferOwnershipModal
+    TransferOwnershipModal,
+    EditModal
   },
   data () {
     return {
@@ -247,6 +253,11 @@ export default {
         card: this.card
       })
     },
+    edit () {
+      this.$modal.show('editModal', {
+        card: this.card
+      })
+    },
     transferOwnership () {
       this.$modal.show('transferOwnershipModal', {
         card: this.card
@@ -254,8 +265,8 @@ export default {
     }
   },
   mounted () {
+    if (!this.$route.params.id) return false
     this.id = parseInt(this.$route.params.id)
-    if (!this.id) return false
     this.getCard()
     if (this.contract != null) {
       this.buildLeasesList()

@@ -1,41 +1,26 @@
 <template>
   <modal
-    name="buyModal"
+    name="editModal"
     height="auto"
     :adaptive="true"
     @before-open="beforeOpen"
     @closed="closed">
-    <div v-if="!txWait" class="buy-modal">
-      <!-- Header -->
+    <div v-if="!txWait" class="edit-modal">
       <div v-if="card" class="ui container center aligned">
         <h2 class="ui header">
-          <i class="fa fa-shopping-cart"></i>
-          Buy
-          <router-link target="_blank" :to="{ name: 'CardDetails', params: { id: card.id } }"
-            :data-tooltip="`View card #${card.id} details`" data-inverted="" data-position="right center">
-            #{{ card.id }}
-          </router-link>
+          <i class="fa fa-wrench"></i>
+          Edit #{{ card.id }}
         </h2>
       </div>
       <div class="ui container">
-        <div class="ui segment basic grid equal width center aligned">
-          <div class="column">
-            <h3 class="ui header">Ξ Amount</h3>
-            <b>{{ price }}</b> Ether
-          </div>
-          <div v-if="card && !isInitialBuy" class="column">
-            <h3 class="ui header"><i class="far fa-user"></i>Owner</h3>
-            <b>{{ card.owner.substring(0, 15) }}...</b>
-          </div>
-        </div>
-        <form class="ui form" @submit.prevent="buy()">
+        <form class="ui form" @submit.prevent="edit()">
           <div class="field">
             <label>Title</label>
             <div class="ui labeled input">
               <div class="ui label">
                 <i class="fa fa-bars"></i>
               </div>
-              <input type="text" v-model="buyForm.title" name="title" placeholder="Enter title">
+              <input type="text" v-model="editForm.title" name="title" placeholder="Enter title">
             </div>
           </div>
           <div class="field">
@@ -44,7 +29,7 @@
               <div class="ui label">
                 <i class="fa fa-link"></i>
               </div>
-              <input type="url" v-model="buyForm.url" name="url" placeholder="http://">
+              <input type="url" v-model="editForm.url" name="url" placeholder="http://">
             </div>
           </div>
           <div class="field">
@@ -53,7 +38,7 @@
               <div class="ui label">
                 <i class="far fa-image"></i>
               </div>
-              <input type="url" v-model="buyForm.image" name="image" placeholder="Enter image URL">
+              <input type="url" v-model="editForm.image" name="image" placeholder="Enter image URL">
             </div>
           </div>
           <!-- Card preview -->
@@ -65,9 +50,9 @@
                   <img class="ui image" :src="previewImage">
                 </div>
                 <div class="content">
-                  <div class="ui header">{{ buyForm.title }}</div>
+                  <div class="ui header">{{ editForm.title }}</div>
                   <div class="meta">
-                    {{ buyForm.url }}
+                    {{ editForm.url }}
                   </div>
                 </div>
               </div>
@@ -96,92 +81,73 @@
 </template>
 
 <script>
-import BigNumber from 'bignumber.js'
 import TxLoader from '@/components/layouts/TxLoader'
 import Card from '@/api/Card'
-import { transactionDeniedNotif, errorNotification, successNotification } from '@/api'
-
-var defaultForm = {
-  title: null,
-  url: null,
-  image: null
-}
+import { transactionDeniedNotif, successNotification } from '@/api'
 
 export default {
-  name: 'buyModal',
+  name: 'editModal',
   components: {
     TxLoader
   },
   data () {
     return {
       card: null,
-      buyForm: defaultForm,
+      editForm: {
+        title: null,
+        url: null,
+        image: null
+      },
       txWait: false
     }
   },
   computed: {
     preview () {
-      return (this.buyForm.title != null || this.buyForm.url != null || this.buyForm.image != null)
-    },
-    isInitialBuy () {
-      if (!this.card) return null
-      return (this.card.owner.startsWith('0x0'))
-    },
-    price () {
-      if (!this.card) return null
-      if (this.isInitialBuy) {
-        return this.card.computeInitialPrice().toFixed(2)
-      } else {
-        /* globals web3 */
-        return web3.utils.fromWei(this.card.price, 'ether')
-      }
+      return (this.editForm.title != null || this.editForm.url != null || this.editForm.image != null)
     },
     previewImage () {
-      return ((this.buyForm.image || '') === '') ? require('@/assets/images/card-placeholder.png') : this.buyForm.image
+      return ((this.editForm.image || '') === '') ? require('@/assets/images/card-placeholder.png') : this.editForm.image
     },
     formValid () {
-      return ((this.buyForm.title || '') !== '' && (this.buyForm.url || '') !== '' && (this.buyForm.image || '') && // fields are not null and not empty
-                (this.buyForm.title.length >= 3 && this.buyForm.title.length <= 38))
+      return ((this.editForm.title || '') !== '' && (this.editForm.url || '') !== '' && (this.editForm.image || '') && // fields are not null and not empty
+                (this.editForm.title.length >= 3 && this.editForm.title.length <= 38))
     }
   },
   methods: {
-    buy () {
+    edit () {
       if (!this.formValid) return false
       this.txWait = true
       const card = Card.getById(this.card.id)
-      /* globals web3 */
-      const price = web3.utils.toWei(new BigNumber(this.price).toNumber().toString(), 'ether')
-      card.buy(this.isInitialBuy, {
-        title: this.buyForm.title,
-        url: this.buyForm.url,
-        image: this.buyForm.image,
-        price: price
+
+      card.edit({
+        title: this.editForm.title,
+        url: this.editForm.url,
+        image: this.editForm.image
       })
         .then((txHash) => {
           this.txWait = false
-          successNotification(`<b>Card #${card.id}</b> bought !`)
+          successNotification(`<b>Card #${card.id}</b> edited !`)
           this.closeModal()
         })
         .catch((err) => {
           console.log(err.message)
-          if (err.message.includes('No "from" address specified in neither the given options')) {
-            errorNotification(`You should use <b>MetaMask</b> in order to buy this card.`)
-          } else {
-            transactionDeniedNotif(err.message)
-          }
+          transactionDeniedNotif(err.message)
           this.txWait = false
         })
     },
     closeModal () {
-      this.$modal.hide('buyModal')
+      this.$modal.hide('editModal')
     },
     beforeOpen (event) {
       if (event.params === undefined) return false
       this.card = event.params.card
+      this.editForm.title = this.card.title
+      this.editForm.url = this.card.url
+      this.editForm.image = this.card.image
     },
     closed (event) {
       this.txWait = false
-      this.buyForm = {
+      this.editForm = {
         title: null,
         url: null,
         image: null
@@ -191,7 +157,7 @@ export default {
 }
 </script>
 <style scoped>
-.buy-modal {
+.edit-modal {
   padding: 1.5em;
 }
 .image {

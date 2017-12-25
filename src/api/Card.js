@@ -63,7 +63,11 @@ class Card {
   }
 
   computeInitialPrice () {
-    return 1.28 - (0.01 * this.id)
+    return 1 - (0.01 * (this.id - 1))
+  }
+
+  computeInitialPriceWei () {
+    return web3.utils.toWei(this.computeInitialPrice(), 'ether')
   }
 
   buy (initialBuy, data) {
@@ -193,6 +197,20 @@ class Card {
       .send({ from: store.getters.currentAddress })
       .then((txHash) => {
         this.leaseDuration = to
+        return txHash
+      })
+  }
+
+  edit (data) {
+    return store.getters.contract.methods.editCard(this.id,
+      data.title,
+      data.url,
+      data.image)
+      .send({ from: store.getters.currentAddress })
+      .then((txHash) => {
+        this.title = data.title
+        this.url = data.url
+        this.image = data.image
         return txHash
       })
   }

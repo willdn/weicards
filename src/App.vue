@@ -36,18 +36,20 @@ import Card from './api/Card'
 import Web3 from 'web3'
 
 const networkConfig = {
+  'live': {
+    networkId: 1,
+    contractAddress: config.contractAddressMain,
+    fallback: `https://mainnet.infura.io/${config.infuraAPIKey}`
+  },
   'ropsten': {
     networkId: 3,
     contractAddress: config.contractAddressRopsten,
     fallback: `https://ropsten.infura.io/${config.infuraAPIKey}`
-  }
-  /*
+  },
   'dev': {
-    networkId: 4447,
     contractAddress: config.contractAddressDev,
     fallback: 'http://localhost:9545'
   }
-  */
 }
 
 export default {
@@ -65,7 +67,7 @@ export default {
   },
   data () {
     return {
-      network: 'ropsten',
+      network: 'live',
       contract: null
     }
   },
@@ -107,7 +109,6 @@ export default {
         console.log('Web3 injected browser: OK.')
         window.web3 = new Web3(window.web3.currentProvider)
       } else {
-        this.network = 'ropsten'
         console.log('Web3 injected browser: Fail. Fallback to INFURA.')
         window.web3 = new Web3(new Web3.providers.HttpProvider(networkConfig[this.network].fallback))
       }
@@ -253,6 +254,15 @@ p {
 }
 .far {
   margin-right: 0.25em !important;
+}
+/* Cards */
+.card-id-label {
+  color: rgb(255, 255, 255) !important;
+  background-color: rgba(248, 199, 91, 0.7) !important;
+}
+.card-id-label:hover {
+  color: rgb(255, 255, 255) !important;
+  background-color: rgba(248, 199, 91, 1) !important;
 }
 /*  */
 .error-exclamation {
