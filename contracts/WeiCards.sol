@@ -2,9 +2,6 @@ pragma solidity ^0.4.18;
 
 contract WeiCards {
 
-    /// Buy card event
-    event Buy(uint8 cardId);
-
     /// Lease record, store card tenants details
     /// and lease details
     struct LeaseCard {
@@ -161,8 +158,6 @@ contract WeiCards {
         _initCardDetails(cardId, price);
         // Add the card to cardList
         cardList.push(cardId);
-        // Fire event
-        Buy(cardId);
         return true;
     }
 
@@ -191,8 +186,6 @@ contract WeiCards {
         cardStructs[cardId].nsfw = false;
         // Disable sell status
         cardDetailsStructs[cardId].availableBuy = false;
-        // Fire event
-        Buy(cardId);
         return true;
     }
 
