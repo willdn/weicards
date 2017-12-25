@@ -36,6 +36,11 @@ import Card from './api/Card'
 import Web3 from 'web3'
 
 const networkConfig = {
+  'live': {
+    networkId: 1,
+    contractAddress: config.contractAddressMain,
+    fallback: `https://mainnet.infura.io/${config.infuraAPIKey}`
+  },
   'ropsten': {
     networkId: 3,
     contractAddress: config.contractAddressRopsten,
@@ -62,7 +67,7 @@ export default {
   },
   data () {
     return {
-      network: 'ropsten',
+      network: 'live',
       contract: null
     }
   },
@@ -104,7 +109,6 @@ export default {
         console.log('Web3 injected browser: OK.')
         window.web3 = new Web3(window.web3.currentProvider)
       } else {
-        this.network = 'ropsten'
         console.log('Web3 injected browser: Fail. Fallback to INFURA.')
         window.web3 = new Web3(new Web3.providers.HttpProvider(networkConfig[this.network].fallback))
       }

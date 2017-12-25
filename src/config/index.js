@@ -4,8 +4,8 @@ const config = {
   minLeaseAmount: 0.005,
   infuraAPIKey: 'KGldez6F33JbsLQy8rhV',
   contractAddressDev: '0x345ca3e014aaf5dca488057592ee47305d9b3e10', // developement
-  // contractAddressRopsten: '0x244723bf8dea865f6c39877075e31248bfaa7875' // ropsten
-  contractAddressRopsten: '0x6421a63ae7A1A3b0AC6634e27b7DEBeb793bCB5f'
+  contractAddressMain: '0x7F57292bF494A8c9342d37395D1378A65D59C499', // main
+  contractAddressRopsten: '0x89176Ca0bA94BbED8A2399aAD2D521b6A5Cf944A' // ropsten
 }
 
 export default config
