@@ -87,7 +87,7 @@
           <div class="ui link cards">
             <div class="ui centered card raised">
               <div class="ui fluid image">
-                <div class="ui floating right circular label card-id-label" :data-tooltip="`View card #5 details`" data-inverted="">
+                <div class="ui floating right circular label card-id-label" :data-tooltip="`View card #6 details`" data-inverted="">
                     <b>15</b>
                 </div>
                 <img class="card-image" :src="require('@/assets/images/demo-card-squirrel.png')">
@@ -178,8 +178,8 @@
           <div class="ui link cards">
             <div class="ui centered card raised">
               <div class="ui fluid image">
-                <div class="ui floating right circular label card-id-label" :data-tooltip="`View card #5 details`" data-inverted="">
-                    <b>5</b>
+                <div class="ui floating right circular label card-id-label" :data-tooltip="`View card #6 details`" data-inverted="">
+                    <b>6</b>
                 </div>
                 <img class="card-image" :src="require('@/assets/images/demo-card-cat.png')">
                 <!-- Ribbon available buy -->
@@ -190,7 +190,7 @@
               </div>
               <div class="content">
                 <div class="ui header">
-                  Card #5
+                  Card #6
                 </div>
                 <div class="meta">
                   kitty.io
@@ -199,15 +199,15 @@
               <div class="extra content">
                 <div class="ui grid equal width center aligned">
                   <div class="column green-hover"
-                      :data-tooltip="`Buy card #5 at 0.96 Ξ`" data-inverted="">
+                      :data-tooltip="`Buy card #6 at 0.95 Ξ`" data-inverted="">
                     <i class="fa fa-shopping-cart"></i>
-                    Buy (<b>0.96 Ξ</b>)
+                    Buy (<b>0.95 Ξ</b>)
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="ui segment basic center aligned card-description">This cute little card is available to buy for 0.96 Ξ</div>
+          <div class="ui segment basic center aligned card-description">This cute little card is available to buy for 0.95 Ξ</div>
         </div>
       </div>
 
