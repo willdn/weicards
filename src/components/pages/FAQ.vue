@@ -199,15 +199,15 @@
               <div class="extra content">
                 <div class="ui grid equal width center aligned">
                   <div class="column green-hover"
-                      :data-tooltip="`Buy card #5 at 1.23 Ξ`" data-inverted="">
+                      :data-tooltip="`Buy card #5 at 0.96 Ξ`" data-inverted="">
                     <i class="fa fa-shopping-cart"></i>
-                    Buy (<b>1.23 Ξ</b>)
+                    Buy (<b>0.96 Ξ</b>)
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="ui segment basic center aligned card-description">This cute little card is available to buy for 1.23 Ξ</div>
+          <div class="ui segment basic center aligned card-description">This cute little card is available to buy for 0.96 Ξ</div>
         </div>
       </div>
 
