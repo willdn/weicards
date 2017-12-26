@@ -57,7 +57,7 @@
       your details for a pre-determined duration.</p>
       <div class="ui stackable grid">
         <div class="column ten wide">
-          <p>Once you purchase a card, it belongs to <b>you</b>. From here you have multiple options :</p>
+          <p>Once you purchased a card, it belongs to <b>you</b>. From here you have multiple options :</p>
           <ul>
             <li><b><router-link :to="{ name: 'FAQ', hash: '#lease-card' }" >Rent</router-link></b> it out to someone for a fixed price and duration</li>
             <li><b><router-link :to="{ name: 'FAQ', hash: '#sell-card' }" >Sell</router-link></b> it to a fixed price</li>
