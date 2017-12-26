@@ -4,6 +4,12 @@
         WeiCards &nbsp;<i class="far fa-address-card"></i>
       </router-link>
       <div class="right menu">
+        <div class="item">
+          <span :data-tooltip="`${boughtCards.length} of 100 cards bought`" data-position="bottom center">
+            <i class="far fa-address-card"></i>
+            {{ boughtCards.length }}/100
+          </span>
+        </div>
         <router-link :to="{ name: 'FAQ', hash: '#how-it-works'}" class="item">
           <i class="fas fa-question"></i>
           How it works
@@ -34,6 +40,9 @@ export default {
     },
     blockNumber () {
       return this.$store.getters.blockNumber
+    },
+    boughtCards () {
+      return this.$store.getters.cards.filter(c => c.isBought())
     }
   },
   methods: {
