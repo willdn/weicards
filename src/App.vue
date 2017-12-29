@@ -15,7 +15,6 @@
 </template>
 
 <script>
-import '../node_modules/semantic-ui-css/semantic.min.css'
 import './assets/semantic.simplex.css'
 import '../node_modules/izitoast/dist/css/iziToast.min.css'
 
