@@ -15,8 +15,8 @@
 </template>
 
 <script>
-import '../node_modules/semantic-ui-css/semantic.min.css'
-import './assets/semantic.simplex.css'
+import '@/assets/css/semantic.simplex.css'
+import '@/assets/css/style.css'
 import '../node_modules/izitoast/dist/css/iziToast.min.css'
 
 import Navbar from '@/components/Navbar'
@@ -211,61 +211,4 @@ export default {
 </script>
 
 <style>
-#app {
-  display: flex !important;
-  min-height: 100vh !important;
-  flex-direction: column !important;
-}
-#app-content {
-  flex: 1;
-}
-.ui.green.button:hover {
-  background-color: rgba(33, 186, 69, 0.75) !important;
-  color: #FFFFFF !important;
-  text-shadow: none !important;
-  background-image: none !important;
-}
-.ui.red.button:hover {
-  background-color: rgba(219, 40, 40, 0.75) !important;
-  color: #FFFFFF !important;
-  text-shadow: none !important;
-  background-image: none !important;
-}
-b {
-  font-weight: bold !important;
-}
-a {
-  color: rgba(255, 107, 74, 0.75) !important;
-}
-a:hover {
-  /* background-color: rgba(255, 107, 74, 1) !important; */
-  color: rgba(255, 107, 74, 1) !important;
-}
-p {
-  color: rgba(0,0,0,.70) !important;
-  text-align: justify;
-}
-/* FontAwesome */
-.fas {
-  margin-right: 0.25em !important;
-}
-.fal {
-  margin-right: 0.25em !important;
-}
-.far {
-  margin-right: 0.25em !important;
-}
-/* Cards */
-.card-id-label {
-  color: rgb(255, 255, 255) !important;
-  background-color: rgba(248, 199, 91, 0.7) !important;
-}
-.card-id-label:hover {
-  color: rgb(255, 255, 255) !important;
-  background-color: rgba(248, 199, 91, 1) !important;
-}
-/*  */
-.error-exclamation {
-  color: #DB2828;
-}
 </style>
