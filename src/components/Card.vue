@@ -30,7 +30,7 @@
         {{ card.getTitle() }}
       </div>
       <div v-if="card.isBought()" class="meta">
-        {{ card.getURL() }}
+        {{ extractHost(card.getURL()) }}
       </div>
     </div>
     <!-- User Buy -->
@@ -157,6 +157,10 @@ export default {
   methods: {
     imageFallback () {
       this.imageURL = require('@/assets/images/card-placeholder.png')
+    },
+    extractHost (url) {
+      let matches = url.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i) // eslint-disable-line
+      return matches && matches[1]
     },
     buyCard () {
       if (this.isOwner) {
