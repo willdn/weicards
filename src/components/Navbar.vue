@@ -5,7 +5,8 @@
       </router-link>
       <div class="right menu">
         <div class="item">
-          <span :data-tooltip="`${boughtCards.length} of 100 cards bought`" data-position="bottom center">
+          <span :data-tooltip="`${boughtCards.length} of 100 cards bought`" data-position="bottom center"
+                style="z-index: 999;">
             <i class="far fa-address-card"></i>
             {{ boughtCards.length }}/100
           </span>
