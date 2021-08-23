@@ -52,6 +52,12 @@ export default {
       return this.$store.getters.cards.filter((c) => c.isBought())
     }
   },
+  methods: {
+    connectWallet: async (_event) => {
+      const [selectedAddress] = await window.ethereum.enable()
+      this.$store.dispatch('setCurrentAddress', selectedAddress)
+    }
+  },
   mounted () {}
 }
 </script>
