@@ -106,10 +106,6 @@ export default {
         })
     },
     */
-    connectWallet: async (_event) => {
-      const [selectedAddress] = await window.ethereum.enable()
-      this.$store.dispatch('setCurrentAddress', selectedAddress)
-    },
     setWeb3 () {
       if (typeof web3 !== 'undefined') {
         console.log('Web3 injected browser: OK.')
