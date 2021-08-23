@@ -37,28 +37,23 @@
 
 <script>
 export default {
-  name: "navbar",
-  data() {
-    return {};
+  name: 'navbar',
+  data () {
+    return {}
   },
   computed: {
-    currentAddress() {
-      return this.$store.getters.currentAddress;
+    currentAddress () {
+      return this.$store.getters.currentAddress
     },
-    blockNumber() {
-      return this.$store.getters.blockNumber;
+    blockNumber () {
+      return this.$store.getters.blockNumber
     },
-    boughtCards() {
-      return this.$store.getters.cards.filter((c) => c.isBought());
-    },
+    boughtCards () {
+      return this.$store.getters.cards.filter((c) => c.isBought())
+    }
   },
-  methods: {
-    connectWallet: async (_event) => {
-      const [selectedAddress] = await window.ethereum.enable();
-    },
-  },
-  mounted() {},
-};
+  mounted () {}
+}
 </script>
 
 <style scoped>
