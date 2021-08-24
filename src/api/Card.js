@@ -24,7 +24,7 @@ class Card {
   }
 
   isBought () {
-    return (!this.owner.startsWith('0x0'))
+    return (!this.owner.startsWith('0x0000000000000000000000000000000000000000'))
   }
 
   getTitle () {
