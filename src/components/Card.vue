@@ -34,7 +34,7 @@
       </div>
     </div>
     <!-- User Buy -->
-    <div v-if="card.availableBuy && !card.owner.startsWith('0x0') && card.owner !== currentAddress" class="extra content">
+    <div v-if="card.availableBuy && !card.owner.startsWith('0x0000000000000000000000000000000000000000') && card.owner !== currentAddress" class="extra content">
       <div class="ui grid equal width center aligned"
            :data-tooltip="`Buy card #${card.id} for ${card.computeInitialPrice().toLocaleString()} Ξ from ${card.owner.substring(0,15)}...`" data-inverted="">
         <div class="column green-hover" @click.prevent="buyCard()">

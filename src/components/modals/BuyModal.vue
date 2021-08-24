@@ -125,7 +125,7 @@ export default {
     },
     isInitialBuy () {
       if (!this.card) return null
-      return (this.card.owner.startsWith('0x0'))
+      return (this.card.owner.startsWith('0x0000000000000000000000000000000000000000'))
     },
     price () {
       if (!this.card) return null
