@@ -34,11 +34,11 @@
             <div class="row">
               <div class="column">
                 <i class="fa fa-user"></i> Owner
-                  <span v-if="card.isOwner()" class="ui compact teal tiny label"
+                  <span v-if="card.isOwner() || card.isWrappedOwner()" class="ui compact teal tiny label"
                      data-tooltip="That's you !" data-inverted="">You</span>
               </div>
               <div class="column">
-                {{ (card.isBought()) ? card.getOwner() : 'None' }}
+                {{ (card.isWrapped()) ? card.wrappedOwner : ((card.isBought()) ? card.getOwner() : 'None' )}}
               </div>
             </div>
             <!-- Title -->
@@ -63,78 +63,88 @@
       </div>
     </div>
     <!-- Settings if is card owner -->
-    <h2 v-if="card && card.isOwner()" class="ui header">
+    <h2 v-if="card && (card.isOwner() || card.isWrappedOwner())" class="ui header">
       <i class="fa fa-cogs"></i>
       Settings
     </h2>
-    <div v-if="card && card.isOwner()" class="ui raised segment stackable grid equal width center aligned">
-      <a class="column red-hover" v-if="card.availableBuy" href=""
-         @click.prevent="cancelSellCard()">
-        <i class="fa fa-times"></i> Cancel sale
-      </a>
-      <a class="column red-hover" v-if="card.availableLease" href=""
-         @click.prevent="cancelLeaseOffer()">
-        <i class="fa fa-times"></i> Cancel lease
-      </a>
-      <a class="column green-hover" v-if="!card.availableBuy && !card.availableLease && !card.inLeasing()" href=""
-         @click.prevent="sellCard()"
-         >
-        <i class="fa fa-dollar-sign"></i> Sell
-      </a>
-      <a class="column orange-hover" v-if="!card.availableBuy && !card.availableLease && !card.inLeasing()" href=""
-         @click.prevent="setLeaseCard()">
-        <i class="fa fa-key"></i> Rent out
-      </a>
-      <a class="column blue-hover" href=""
-         @click.prevent="edit()">
-        <i class="fa fa-wrench"></i> Edit
-      </a>
-      <a class="column teal-hover" href=""
-         @click.prevent="transferOwnership()">
-        <i class="fa fa-exchange-alt"></i> Transfer
-      </a>
-    </div>
-    <!-- Leases -->
-    <h2 v-if="card" class="ui header">
-      <i class="fa fa-key"></i>
-      Leases <small>({{ leases.length }})</small>
-    </h2>
-    <!-- Loader -->
-    <loader v-if="card && !leasesLoaded" />
-    <!-- No leases -->
-    <div v-if="card && leasesLoaded && leases.length === 0" class="ui segment center aligned raised">
-      Card <b>#{{ card.id }}</b> has not been leased yet
-    </div>
-    <!-- Leases history -->
-    <table v-if="card && leasesLoaded && leases.length > 0" class="ui celled unstackable table">
-      <thead><tr>
-        <th>#</th>
-        <th>Title</th>
-        <th>Tenant</th>
-        <th>URL</th>
-        <th>End</th>
-      </tr></thead>
-      <tbody>
-        <tr v-for="lease in leases" :key="lease.leaseIndex">
-          <td>
-            <div v-if="lease.untilBlock < blockNumber">{{ lease.leaseIndex }}</div>
-            <div v-if="lease.untilBlock >= blockNumber" class="ui orange ribbon label">
-              <i class="fa fa-star"></i>
-            </div>
-        </td>
-          <td><img class="ui image avatar" :src="lease.image" /> {{ lease.title }}</td>
-          <td>
-          <span v-if="lease.tenant === currentAddress" class="ui compact teal tiny label"
-                data-tooltip="That's you !" data-inverted="">You</span>
-            {{ lease.tenant.substring(0, 15) }}...
+    <div v-if="card && !card.isWrapped()">
+      <div v-if="card && card.isOwner()" class="ui raised segment stackable grid equal width center aligned">
+        <a class="column red-hover" v-if="card.availableBuy" href=""
+          @click.prevent="cancelSellCard()">
+          <i class="fa fa-times"></i> Cancel sale
+        </a>
+        <a class="column red-hover" v-if="card.availableLease" href=""
+          @click.prevent="cancelLeaseOffer()">
+          <i class="fa fa-times"></i> Cancel lease
+        </a>
+        <a class="column green-hover" v-if="!card.availableBuy && !card.availableLease && !card.inLeasing()" href=""
+          @click.prevent="sellCard()"
+          >
+          <i class="fa fa-dollar-sign"></i> Sell
+        </a>
+        <a class="column orange-hover" v-if="!card.availableBuy && !card.availableLease && !card.inLeasing()" href=""
+          @click.prevent="setLeaseCard()">
+          <i class="fa fa-key"></i> Rent out
+        </a>
+        <a class="column blue-hover" href=""
+          @click.prevent="edit()">
+          <i class="fa fa-wrench"></i> Edit
+        </a>
+        <a class="column teal-hover" href=""
+          @click.prevent="transferOwnership()">
+          <i class="fa fa-exchange-alt"></i> Transfer
+        </a>
+      </div>
+      <!-- Leases -->
+      <h2 v-if="card" class="ui header">
+        <i class="fa fa-key"></i>
+        Leases <small>({{ leases.length }})</small>
+      </h2>
+      <!-- Loader -->
+      <loader v-if="card && !leasesLoaded" />
+      <!-- No leases -->
+      <div v-if="card && leasesLoaded && leases.length === 0" class="ui segment center aligned raised">
+        Card <b>#{{ card.id }}</b> has not been leased yet
+      </div>
+      <!-- Leases history -->
+      <table v-if="card && leasesLoaded && leases.length > 0" class="ui celled unstackable table">
+        <thead><tr>
+          <th>#</th>
+          <th>Title</th>
+          <th>Tenant</th>
+          <th>URL</th>
+          <th>End</th>
+        </tr></thead>
+        <tbody>
+          <tr v-for="lease in leases" :key="lease.leaseIndex">
+            <td>
+              <div v-if="lease.untilBlock < blockNumber">{{ lease.leaseIndex }}</div>
+              <div v-if="lease.untilBlock >= blockNumber" class="ui orange ribbon label">
+                <i class="fa fa-star"></i>
+              </div>
           </td>
-          <td><a :href="lease.url" target="_blank">{{ lease.url }}</a></td>
-          <td>{{ leaseEndTime(lease.untilBlock).fromNow() }}</td>
-        </tr>
-      </tbody>
-      <tfoot>
-      </tfoot>
-    </table>
+            <td><img class="ui image avatar" :src="lease.image" /> {{ lease.title }}</td>
+            <td>
+            <span v-if="lease.tenant === currentAddress" class="ui compact teal tiny label"
+                  data-tooltip="That's you !" data-inverted="">You</span>
+              {{ lease.tenant.substring(0, 15) }}...
+            </td>
+            <td><a :href="lease.url" target="_blank">{{ lease.url }}</a></td>
+            <td>{{ leaseEndTime(lease.untilBlock).fromNow() }}</td>
+          </tr>
+        </tbody>
+        <tfoot>
+        </tfoot>
+      </table>
+    </div>
+    <div v-if="card && card.isWrapped()">
+      <div v-if="card && card.isWrappedOwner()" class="ui raised segment stackable grid equal width center aligned">
+        <a class="column blue-hover" href=""
+          @click.prevent="edit()">
+          <i class="fa fa-wrench"></i> Edit
+        </a>
+      </div>
+    </div>
     <!-- Modals -->
     <edit-modal></edit-modal>
     <transfer-ownership-modal></transfer-ownership-modal>
@@ -149,6 +159,7 @@ import Loader from '@/components/layouts/Loader'
 // Modals
 import TransferOwnershipModal from '@/components/modals/TransferOwnershipModal'
 import EditModal from '@/components/modals/EditModal'
+import WrapModal from '@/components/modals/WrapModal'
 
 export default {
   name: 'cardDetails',
@@ -156,7 +167,8 @@ export default {
     Loader,
     Card,
     TransferOwnershipModal,
-    EditModal
+    EditModal,
+    WrapModal
   },
   data () {
     return {

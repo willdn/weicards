@@ -11,6 +11,7 @@
     <cancel-sell-offer-modal></cancel-sell-offer-modal>
     <cancel-lease-offer-modal></cancel-lease-offer-modal>
     <lease-modal></lease-modal>
+    <wrap-modal></wrap-modal>
   </div>
 </template>
 
@@ -29,30 +30,45 @@ import SellCardModal from '@/components/modals/SellCardModal'
 import CancelSellOfferModal from '@/components/modals/CancelSellOfferModal'
 import CancelLeaseOfferModal from '@/components/modals/CancelLeaseOfferModal'
 import LeaseModal from '@/components/modals/LeaseModal'
+import WrapModal from '@/components/modals/WrapModal'
 
 import JSONInterface from '../static/contracts/WeiCards.json'
+import WrapperJSONInterface from '../static/contracts/WeiCardsWrapper.json'
 import config from './config'
 import Card from './api/Card'
 import Web3 from 'web3'
+import app from './App'
 
 const networkConfig = {
   live: {
     networkId: 1,
     contractAddress: config.contractAddressMain,
-    fallback: `https://mainnet.infura.io/${config.infuraAPIKey}`
+    fallback: `https://eth-mainnet.alchemyapi.io/v2/${config.alchemyAPIKey}`,
+    wrapContractAddress: config.wrapContractAddressMain
   },
   ropsten: {
     networkId: 3,
     contractAddress: config.contractAddressRopsten,
-    fallback: `https://ropsten.infura.io/${config.infuraAPIKey}`
+    fallback: `https://eth-ropsten.alchemyapi.io/v2/${config.alchemyAPIKey}`,
+    wrapContractAddress: config.wrapContractAddressRopsten
+  },
+  rinkeby: {
+    networkId: 3,
+    contractAddress: config.contractAddressRinkeby,
+    fallback: `https://eth-rinkeby.alchemyapi.io/v2/${config.alchemyAPIKey}`,
+    wrapContractAddress: config.wrapContractAddressRinkeby
   },
   dev: {
     contractAddress: config.contractAddressDev,
-    fallback: 'http://localhost:9545'
+    fallback: 'http://localhost:9545',
+    wrapContractAddress: config.wrapContractAddressDev
   }
 }
 
+const NETWORK_ID = 'rinkeby'
+
 export default {
+  currentNetworkConfig: networkConfig[NETWORK_ID],
   name: 'app',
   components: {
     Navbar,
@@ -63,11 +79,12 @@ export default {
     SellCardModal,
     CancelSellOfferModal,
     CancelLeaseOfferModal,
-    LeaseModal
+    LeaseModal,
+    WrapModal
   },
   data () {
     return {
-      network: 'live',
+      network: NETWORK_ID,
       contract: null
     }
   },
@@ -128,6 +145,16 @@ export default {
       this.contract = contract
       return contract
     },
+    getWrappedContract () {
+      const AppContract = new window.web3.eth.Contract(
+        WrapperJSONInterface.abi,
+        networkConfig[this.network].wrapContractAddress
+      )
+      const wrappedContract = Object.freeze(AppContract)
+      this.$store.dispatch('setWrappedContract', wrappedContract)
+      this.wrappedContract = wrappedContract
+      return wrappedContract
+    },
     getCurrentAddress () {
       return window.web3.eth.getAccounts().then((addresses) => {
         const address = addresses[0]
@@ -159,22 +186,66 @@ export default {
               .getCardDetails(i)
               .call()
               .then((details) => {
-                this.$store.dispatch(
-                  'addCard',
-                  new Card({
-                    id: i,
-                    owner: card.owner,
-                    title: card.title,
-                    url: card.url,
-                    image: card.image,
-                    price: details.price,
-                    priceLease: details.priceLease,
-                    leaseDuration: details.leaseDuration,
-                    availableBuy: details.availableBuy,
-                    availableLease: details.availableLease
+                if (card.owner !== app.currentNetworkConfig.wrapContractAddress) {
+                  this.$store.dispatch(
+                    'addCard',
+                    new Card({
+                      id: i,
+                      owner: card.owner,
+                      wrappedOwner: null,
+                      title: card.title,
+                      url: card.url,
+                      image: card.image,
+                      price: details.price,
+                      priceLease: details.priceLease,
+                      leaseDuration: details.leaseDuration,
+                      availableBuy: details.availableBuy,
+                      availableLease: details.availableLease
+                    })
+                  )
+                  return this.getLastLease(i)
+                }
+                return this.wrappedContract.methods
+                  .ownerOf(i)
+                  .call()
+                  .then((owner) => {
+                    this.$store.dispatch(
+                      'addCard',
+                      new Card({
+                        id: i,
+                        owner: card.owner,
+                        wrappedOwner: owner,
+                        title: card.title,
+                        url: card.url,
+                        image: card.image,
+                        price: details.price,
+                        priceLease: details.priceLease,
+                        leaseDuration: details.leaseDuration,
+                        availableBuy: details.availableBuy,
+                        availableLease: details.availableLease
+                      })
+                    )
+                    return this.getLastLease(i)
                   })
-                )
-                return this.getLastLease(i)
+                  .catch((e) => {
+                    this.$store.dispatch(
+                      'addCard',
+                      new Card({
+                        id: i,
+                        owner: card.owner,
+                        wrappedOwner: null,
+                        title: card.title,
+                        url: card.url,
+                        image: card.image,
+                        price: details.price,
+                        priceLease: details.priceLease,
+                        leaseDuration: details.leaseDuration,
+                        availableBuy: details.availableBuy,
+                        availableLease: details.availableLease
+                      })
+                    )
+                    return this.getLastLease(i)
+                  })
               })
           })
           .catch((err) => {
@@ -199,6 +270,7 @@ export default {
   mounted () {
     this.setWeb3()
     this.getContract()
+    this.getWrappedContract()
     this.getCurrentAddress()
       .then((address) => {
         // Get block number

@@ -3,7 +3,7 @@
     <div class="ui fluid image">
       <!-- Card id + yellow if is owner -->
       <router-link :to="{ name: 'CardDetails', params: { 'id': card.id }}">
-        <div class="ui floating right circular label card-id-label" :class="{ 'teal': isOwner }"
+        <div class="ui floating right circular label card-id-label" :class="{ 'teal': isOwner || isWrappedOwner}"
             :data-tooltip="`View card #${card.id} details`" data-inverted="">
             <b>{{ card.id }}</b>
         </div>
@@ -33,8 +33,17 @@
         {{ extractHost(card.getURL()) }}
       </div>
     </div>
+    <!-- For wrapped card -->
+    <div v-if="card.isWrapped() && !card.owner.startsWith('0x0000000000000000000000000000000000000000') && card.owner !== currentAddress" class="extra content">
+      <div class="ui grid equal width center aligned"
+           :data-tooltip="`Wrapped cards can be traded on Opensea`" data-inverted="">
+        <div class="column green-hover" @click.prevent="openOnOpenSea()">
+          Open on Opensea
+        </div>
+      </div>
+    </div>
     <!-- User Buy -->
-    <div v-if="card.availableBuy && !card.owner.startsWith('0x0000000000000000000000000000000000000000') && card.owner !== currentAddress" class="extra content">
+    <div v-if="!card.isWrapped && card.availableBuy && !card.owner.startsWith('0x0000000000000000000000000000000000000000') && card.owner !== currentAddress" class="extra content">
       <div class="ui grid equal width center aligned"
            :data-tooltip="`Buy card #${card.id} for ${card.computeInitialPrice().toLocaleString()} Ξ from ${card.owner.substring(0,15)}...`" data-inverted="">
         <div class="column green-hover" @click.prevent="buyCard()">
@@ -44,7 +53,7 @@
       </div>
     </div>
     <!-- Owner infos -->
-    <div v-if="!card.availableBuy && card.owner !== currentAddress && !card.availableLease && !inLeasing" class="extra content">
+    <div v-if="!card.isWrapped && !card.availableBuy && card.owner !== currentAddress && !card.availableLease && !inLeasing" class="extra content">
       <div class="ui grid equal width center aligned">
         <div class="column"
              :data-tooltip="`Owned by ${card.owner}`" data-inverted="">
@@ -54,7 +63,7 @@
       </div>
     </div>
     <!-- Leasing : Tenants infos -->
-    <div v-if="!card.availableBuy && card.owner !== currentAddress && inLeasing" class="extra content">
+    <div v-if="!card.isWrapped && !card.availableBuy && card.owner !== currentAddress && inLeasing" class="extra content">
       <div class="ui grid equal width center aligned">
         <div class="column"
              :data-tooltip="`Leased by ${card.lastLease.tenant.substring(0, 12)}... until ${card.endLeaseDate().format('LL')}`" data-inverted="">
@@ -130,6 +139,7 @@
 <script>
 import Card from '@/api/Card'
 import * as api from '@/api'
+import app from '../App'
 
 export default {
   name: 'card',
@@ -152,6 +162,9 @@ export default {
     },
     isOwner () {
       return (this.card.owner === this.currentAddress)
+    },
+    isWrappedOwner () {
+      return (this.card.wrappedOwner === this.currentAddress)
     }
   },
   methods: {
@@ -170,6 +183,9 @@ export default {
       this.$modal.show('buyModal', {
         card: this.card
       })
+    },
+    openOnOpenSea () {
+      window.location.href = `https://testnets.opensea.io/assets/${app.currentNetworkConfig.wrapContractAddress}/${this.card.id}`
     },
     sellCard () {
       this.$modal.show('sellCardModal', {

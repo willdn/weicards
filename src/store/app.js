@@ -1,5 +1,6 @@
 const state = {
   contract: null,
+  wrappedContract: null,
   currentAddress: null,
   cards: [],
   blockNumber: 0,
@@ -10,6 +11,7 @@ const state = {
 const getters = {
   app: state => state,
   contract: state => state.contract,
+  wrappedContract: state => state.wrappedContract,
   currentAddress: state => state.currentAddress,
   cards: state => state.cards,
   blockNumber: state => state.blockNumber,
@@ -20,6 +22,9 @@ const getters = {
 const actions = {
   setContract ({ commit, state }, contract) {
     commit('setContract', contract)
+  },
+  setWrappedContract ({ commit, state }, wrappedContract) {
+    commit('setWrappedContract', wrappedContract)
   },
   setCurrentAddress ({ commit, state }, currentAddress) {
     commit('setCurrentAddress', currentAddress)
@@ -42,6 +47,9 @@ const actions = {
 const mutations = {
   setContract (state, contract) {
     state.contract = contract
+  },
+  setWrappedContract (state, contract) {
+    state.wrappedContract = contract
   },
   setCurrentAddress (state, currentAddress) {
     state.currentAddress = currentAddress

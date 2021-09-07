@@ -6,6 +6,7 @@ import Account from '@/components/Account'
 import CardDetails from '@/components/CardDetails'
 import SignIn from '@/components/pages/SignIn'
 import FAQ from '@/components/pages/FAQ'
+import Wrap from '@/components/pages/Wrap'
 
 Vue.use(Router)
 
@@ -43,6 +44,11 @@ export default new Router({
       path: '/faq',
       name: 'FAQ',
       component: FAQ
+    },
+    {
+      path: '/wrap',
+      name: 'Wrap',
+      component: Wrap
     }
   ]
 })
