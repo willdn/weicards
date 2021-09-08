@@ -53,7 +53,7 @@
       </div>
     </div>
     <!-- Owner infos -->
-    <div v-if="!card.isWrapped && !card.availableBuy && card.owner !== currentAddress && !card.availableLease && !inLeasing" class="extra content">
+    <div v-if="!card.isWrapped() && !card.availableBuy && card.owner !== currentAddress && !card.availableLease && !inLeasing" class="extra content">
       <div class="ui grid equal width center aligned">
         <div class="column"
              :data-tooltip="`Owned by ${card.owner}`" data-inverted="">
