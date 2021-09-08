@@ -185,7 +185,7 @@ export default {
       })
     },
     openOnOpenSea () {
-      window.location.href = `https://testnets.opensea.io/assets/${app.currentNetworkConfig.wrapContractAddress}/${this.card.id}`
+      window.open(`https://testnets.opensea.io/assets/${app.currentNetworkConfig.wrapContractAddress}/${this.card.id}`, '_blank')
     },
     sellCard () {
       this.$modal.show('sellCardModal', {
