@@ -20,13 +20,13 @@
                 <div class="ui label">
               </div>
             </div>
+            <h3>Make sure to confirm all 3 transactions!</h3>
             <!-- Actions -->
             <div class="ui segment basic center aligned">
               <button class="ui green button"
                 :class="{ 'disabled': !formValid() }"
                 @click.prevent="wrapCard()">
-                <i class="fa fa-check"></i>
-                Confirm
+                Wrap
               </button>
             </div>
           </div>
