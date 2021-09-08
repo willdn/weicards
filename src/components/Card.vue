@@ -38,7 +38,7 @@
       <div class="ui grid equal width center aligned"
            :data-tooltip="`Wrapped cards can be traded on Opensea`" data-inverted="">
         <div class="column green-hover" @click.prevent="openOnOpenSea()">
-          Open on Opensea
+          View on Opensea
         </div>
       </div>
     </div>
