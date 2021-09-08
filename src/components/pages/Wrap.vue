@@ -9,6 +9,13 @@
     <div class="ui segment raised">
       <div class="ui link selection animated list">
           <form class="ui form">
+            <h3>Make sure to confirm all 3 transactions!</h3>
+            <h3>You can only wrap your card if:</h3>
+            <ul>
+              <li>the card is not wrapped yet,</li>
+              <li>the card is not offered for buying or renting,</li>
+              <li>the card is not rented out.</li>
+            </ul>
             <div class="field">
               <label>Card id</label>
               <div class="ui right labeled input">
@@ -20,7 +27,6 @@
                 <div class="ui label">
               </div>
             </div>
-            <h3>Make sure to confirm all 3 transactions!</h3>
             <!-- Actions -->
             <div class="ui segment basic center aligned">
               <button class="ui green button"
@@ -67,7 +73,7 @@ export default {
     },
     formValid () {
       const card = this.getCard()
-      return card && card.isOwner() && !card.isWrapped()
+      return card && card.isOwner() && !card.availableBuy && !card.availableLease && !card.inLeasing()
     },
     setSuccess () {
       this.success = true
