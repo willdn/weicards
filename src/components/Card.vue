@@ -185,7 +185,7 @@ export default {
       })
     },
     openOnOpenSea () {
-      window.open(`https://testnets.opensea.io/assets/${app.currentNetworkConfig.wrapContractAddress}/${this.card.id}`, '_blank')
+      window.open(`https://opensea.io/assets/${app.currentNetworkConfig.wrapContractAddress}/${this.card.id}`, '_blank')
     },
     sellCard () {
       this.$modal.show('sellCardModal', {

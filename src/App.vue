@@ -65,7 +65,7 @@ const networkConfig = {
   }
 }
 
-const NETWORK_ID = 'rinkeby'
+const NETWORK_ID = 'live'
 
 export default {
   currentNetworkConfig: networkConfig[NETWORK_ID],

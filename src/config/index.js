@@ -9,7 +9,7 @@ const config = {
   contractAddressRinkeby: '0x0EB0651ffb92B48D6756911Cec9367c024a99994', // rinkeby
 
   wrapContractAddressDev: '', // developement
-  wrapContractAddressMain: '', // main
+  wrapContractAddressMain: '0x81a83b411a079d4b1eb351511834d0c8d52860c4', // main
   wrapContractAddressRopsten: '', // ropsten
   wrapContractAddressRinkeby: '0x3F084728E549619Ce5998Eef0aFc3244a0B06773' // rinkeby
 }
