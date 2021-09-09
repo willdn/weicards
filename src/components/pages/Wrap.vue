@@ -16,6 +16,7 @@
               <li>the card is not offered for buying or renting,</li>
               <li>the card is not rented out.</li>
             </ul>
+            <h3>Use at your own risk!</h3>
             <div class="field">
               <label>Card id</label>
               <div class="ui right labeled input">
