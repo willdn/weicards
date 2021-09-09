@@ -10,6 +10,7 @@
       <div class="ui link selection animated list">
           <form class="ui form">
             <h3>Make sure to confirm all 3 transactions!</h3>
+            <h3>Do not leave the page until all 3 transactions are confirmed!</h3>
             <h3>You can only wrap your card if:</h3>
             <ul>
               <li>the card is not wrapped yet,</li>
