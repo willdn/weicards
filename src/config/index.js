@@ -11,7 +11,7 @@ const config = {
   wrapContractAddressDev: '', // developement
   wrapContractAddressMain: '', // main
   wrapContractAddressRopsten: '', // ropsten
-  wrapContractAddressRinkeby: '0x3F084728E549619Ce5998Eef0aFc3244a0B06773' // rinkeby
+  wrapContractAddressRinkeby: '0x6a3EB1D26be168469E51F0e7eA778Abc216Bd504' // rinkeby
 }
 
 export default config
