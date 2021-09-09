@@ -3,11 +3,13 @@ import store from '../store'
 import BigNumber from 'bignumber.js'
 import web3 from 'web3'
 import moment from 'moment'
+import app from '../App'
 
 class Card {
   constructor (data) {
     this.id = data.id
     this.owner = data.owner
+    this.wrappedOwner = data.wrappedOwner
     this.title = data.title
     this.url = data.url
     this.image = data.image
@@ -17,6 +19,7 @@ class Card {
     this.availableBuy = data.availableBuy
     this.availableLease = data.availableLease
     this.lastLease = data.lastLease
+    this.wrapStatus = null
   }
 
   static getById (id) {
@@ -60,6 +63,10 @@ class Card {
 
   isOwner () {
     return (store.getters.currentAddress === this.owner)
+  }
+
+  isWrappedOwner () {
+    return (store.getters.currentAddress === this.wrappedOwner)
   }
 
   computeInitialPrice () {
@@ -201,7 +208,36 @@ class Card {
       })
   }
 
+  claim () {
+    return store.getters.wrappedContract.methods.claimCard(this.id)
+      .send({ from: store.getters.currentAddress })
+      .then((txHash) => {
+        return txHash
+      })
+  }
+
+  wrap () {
+    return store.getters.wrappedContract.methods.wrap(this.id)
+      .send({ from: store.getters.currentAddress })
+      .then((txHash) => {
+        return txHash
+      })
+  }
+
   edit (data) {
+    if (this.isWrapped) {
+      return store.getters.wrappedContract.methods.editCard(this.id,
+        data.title,
+        data.url,
+        data.image)
+        .send({ from: store.getters.currentAddress })
+        .then((txHash) => {
+          this.title = data.title
+          this.url = data.url
+          this.image = data.image
+          return txHash
+        })
+    }
     return store.getters.contract.methods.editCard(this.id,
       data.title,
       data.url,
@@ -232,6 +268,10 @@ class Card {
       let totalTimeSecond = (this.lastLease.untilBlock - blockNumber) * blockTime
       return moment().add(totalTimeSecond, 's')
     }
+  }
+
+  isWrapped () {
+    return this.owner === app.currentNetworkConfig.wrapContractAddress
   }
 }
 

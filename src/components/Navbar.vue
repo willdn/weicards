@@ -14,6 +14,9 @@
           {{ boughtCards.length }}/100
         </span>
       </div>
+      <router-link :to="{ name: 'Wrap' }" class="item">
+        Wrap card
+      </router-link>
       <router-link :to="{ name: 'FAQ', hash: '#how-it-works' }" class="item">
         <i class="fas fa-question"></i>
         How it works

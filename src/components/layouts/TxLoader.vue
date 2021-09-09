@@ -5,7 +5,6 @@
       <h2 class="ui header">
         Waiting for MetaMask <i class="fas fa-circle-notch fa-spin"></i>
       </h2>
-      <h3 class="ui subheader">You can close this window when transaction has been submitted</h3>
     </div>
   </div>
 </template>
