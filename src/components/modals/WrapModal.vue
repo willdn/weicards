@@ -3,6 +3,7 @@
     name="wrapModal"
     height="auto"
     :adaptive="true"
+    v-bind:click-to-close="false"
     @before-open="beforeOpen"
     @closed="closed">
     <div v-if="!txWait" class="wrap-modal">
@@ -14,6 +15,9 @@
       <!-- Actions -->
       <!-- Step 1 Actions -->
       <div v-if="!txWait && card && !card.isWrapped() && card.wrapStatus === null" class="ui segment basic center aligned" style="margin-top: 0em;">
+        <div class="ui container" style="margin-bottom: 0.75em;">
+          If you confirm, you have to go through all 3 transactions!
+        </div>
         <div class="ui container" style="margin-bottom: 0.75em;">
           Step 1/3: Prepare card #{{ card.id }} to wrap
         </div>
@@ -37,11 +41,6 @@
           <i class="fa fa-check"></i>
           Confirm
         </button>
-        <button class="ui basic button"
-          @click.prevent="closeModal()">
-          <i class="fa fa-times"></i>
-          Cancel
-        </button>
       </div>
 
       <!-- Step 3 Actions -->
@@ -53,13 +52,7 @@
           <i class="fa fa-check"></i>
           Confirm
         </button>
-        <button class="ui basic button"
-          @click.prevent="closeModal()">
-          <i class="fa fa-times"></i>
-          Cancel
-        </button>
       </div>
-
     </div>
     <!-- Waiting MetaMask -->
     <tx-loader :wait="txWait" />
