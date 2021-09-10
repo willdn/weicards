@@ -6,7 +6,7 @@
     v-bind:click-to-close="false"
     @before-open="beforeOpen"
     @closed="closed">
-    <div v-if="!txWait" class="wrap-modal">
+    <div class="wrap-modal">
       <div v-if="card" class="ui segment basic center aligned">
         <h2 class="ui header">
           Wrap card #{{ card.id }}
@@ -14,43 +14,38 @@
       </div>
       <!-- Actions -->
       <!-- Step 1 Actions -->
-      <div v-if="!txWait && card && !card.isWrapped() && card.wrapStatus === null" class="ui segment basic center aligned" style="margin-top: 0em;">
-        <div class="ui container" style="margin-bottom: 0.75em;">
-          If you confirm, you have to go through all 3 transactions!
-        </div>
-        <div class="ui container" style="margin-bottom: 0.75em;">
+      <div v-if="card" class="ui segment basic center aligned" style="margin-top: 0em;">
+        <h2 class="ui container" style="margin-bottom: 0.75em;">
+          If you start the first step, you have to go through all 3 transactions!
+        </h2>
+        <h4 class="ui container" style="margin-bottom: 0.75em;">
           Step 1/3: Prepare card #{{ card.id }} to wrap
-        </div>
+        </h4>
         <button class="ui green button" @click.prevent="claimCard()">
-          <i class="fa fa-check"></i>
-          Confirm
-        </button>
-        <button class="ui basic button"
-          @click.prevent="closeModal()">
-          <i class="fa fa-times"></i>
-          Cancel
+          Prepare
         </button>
       </div>
 
       <!-- Step 2 Actions -->
-      <div v-if="!txWait && card && !card.isWrapped() && card.wrapStatus === 'claimed'" class="ui segment basic center aligned" style="margin-top: 0em;">
-        <div class="ui container" style="margin-bottom: 0.75em;">
+      <div v-if="card" class="ui segment basic center aligned" style="margin-top: 0em;">
+        <h3 class="ui container" style="margin-bottom: 0.75em; color: red">
+          Make sure to wait until Step 1 (Prepare) is confirmed before you start Step 2, otherwise your card will be LOST!
+        </h3>
+        <h4 class="ui container" style="margin-bottom: 0.75em;">
           Step 2/3: Transfer card #{{ card.id }} to wrapper contract.
-        </div>
+        </h4>
         <button class="ui green button" @click.prevent="transferOwnership()">
-          <i class="fa fa-check"></i>
-          Confirm
+          Transfer
         </button>
       </div>
 
       <!-- Step 3 Actions -->
-      <div v-if="!txWait && card && !card.isWrapped() && card.wrapStatus === 'transferred'" class="ui segment basic center aligned" style="margin-top: 0em;">
-        <div class="ui container" style="margin-bottom: 0.75em;">
+      <div v-if="card" class="ui segment basic center aligned" style="margin-top: 0em;">
+        <h4 class="ui container" style="margin-bottom: 0.75em;">
           Step 3/3: Wrap Card #{{ card.id }}
-        </div>
+        </h4>
         <button class="ui green button" @click.prevent="wrapCard()">
-          <i class="fa fa-check"></i>
-          Confirm
+          Wrap
         </button>
       </div>
     </div>
@@ -116,7 +111,7 @@ export default {
         .then((txHash) => {
           this.txWait = false
           successNotification(`<b>Card #${card.id}</b> is wrapped`)
-          card.wrapStatus = null
+          card.wrapStatus = 'wrapped'
           this.closeModal()
         })
         .catch((err) => {

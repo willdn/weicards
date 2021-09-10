@@ -13,6 +13,7 @@
             <h3>Do not leave the page until all 3 transactions are confirmed!</h3>
             <h3>You can only wrap your card if:</h3>
             <ul>
+              <li>you own the card,</li>
               <li>the card is not wrapped yet,</li>
               <li>the card is not offered for buying or renting,</li>
               <li>the card is not rented out.</li>
@@ -69,13 +70,12 @@ export default {
     },
     getCard () {
       return this.cards.find(c => {
-        console.log(c.id)
         return c.id === parseInt(this.cardId)
       })
     },
     formValid () {
       const card = this.getCard()
-      return card && card.isOwner() && !card.availableBuy && !card.availableLease && !card.inLeasing()
+      return card && !card.availableBuy && !card.availableLease && !card.inLeasing()
     },
     setSuccess () {
       this.success = true
