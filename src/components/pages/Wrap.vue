@@ -69,7 +69,6 @@ export default {
     },
     getCard () {
       return this.cards.find(c => {
-        console.log(c.id)
         return c.id === parseInt(this.cardId)
       })
     },
