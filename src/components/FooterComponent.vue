@@ -8,11 +8,10 @@
       <i class="fa fa-question"></i>
       FAQ
     </router-link>
-    <a href="mailto:wei100cards@gmail.com" class="item item-3">
-      <i class="fa fa-envelope"></i>
-      Contact
+    <a href="https://discord.gg/Egsv4VR5" class="item item-3">
+      Discord
     </a>
-    <a target="_blank" href="https://github.com/willdn/weicards" class="item item-4">
+    <a target="_blank" href="https://github.com/feeIs/weicards/" class="item item-4">
       <i class="fab fa-github"></i>
       Github
     </a>
