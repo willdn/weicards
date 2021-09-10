@@ -24,11 +24,13 @@
         <button class="ui green button" @click.prevent="claimCard()">
           Prepare
         </button>
+        <span v-if="card.wrapStatus === 'claimed' || card.wrapStatus === 'transferred' || card.wrapStatus === 'wrapped'">Completed</span>
+
       </div>
 
       <!-- Step 2 Actions -->
       <div v-if="card" class="ui segment basic center aligned" style="margin-top: 0em;">
-        <h3 class="ui container" style="margin-bottom: 0.75em;">
+        <h3 class="ui container" style="margin-bottom: 0.75em; color: red">
           Make sure to wait until Step 1 (Prepare) is confirmed before you start Step 2, otherwise your card will be LOST!
         </h3>
         <h4 class="ui container" style="margin-bottom: 0.75em;">
@@ -37,6 +39,7 @@
         <button class="ui green button" @click.prevent="transferOwnership()">
           Transfer
         </button>
+        <span v-if="card.wrapStatus === 'transferred' || card.wrapStatus === 'wrapped'">Completed</span>
       </div>
 
       <!-- Step 3 Actions -->
@@ -47,6 +50,7 @@
         <button class="ui green button" @click.prevent="wrapCard()">
           Wrap
         </button>
+        <span v-if="card.wrapStatus === 'wrapped'">Completed</span>
       </div>
     </div>
     <!-- Waiting MetaMask -->
@@ -111,7 +115,7 @@ export default {
         .then((txHash) => {
           this.txWait = false
           successNotification(`<b>Card #${card.id}</b> is wrapped`)
-          card.wrapStatus = null
+          card.wrapStatus = 'wrapped'
           this.closeModal()
         })
         .catch((err) => {
