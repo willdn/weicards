@@ -24,8 +24,6 @@
         <button class="ui green button" @click.prevent="claimCard()">
           Prepare
         </button>
-        <span v-if="card.wrapStatus === 'claimed' || card.wrapStatus === 'transferred' || card.wrapStatus === 'wrapped'">Completed</span>
-
       </div>
 
       <!-- Step 2 Actions -->
@@ -39,7 +37,6 @@
         <button class="ui green button" @click.prevent="transferOwnership()">
           Transfer
         </button>
-        <span v-if="card.wrapStatus === 'transferred' || card.wrapStatus === 'wrapped'">Completed</span>
       </div>
 
       <!-- Step 3 Actions -->
@@ -50,7 +47,6 @@
         <button class="ui green button" @click.prevent="wrapCard()">
           Wrap
         </button>
-        <span v-if="card.wrapStatus === 'wrapped'">Completed</span>
       </div>
     </div>
     <!-- Waiting MetaMask -->
