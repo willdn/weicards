@@ -120,7 +120,7 @@ export default {
       return this.$store.getters.networkUnknown
     },
     accountCards () {
-      return this.$store.getters.cards.filter(c => c.isOwner() ||
+      return this.$store.getters.cards.filter(c => c.isOwner() || c.isWrappedOwner() ||
               (c.inLeasing() && this.currentAddress === c.lastLease.tenant)) // if current address rent this card
     },
     contract () {
