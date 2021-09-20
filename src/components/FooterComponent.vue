@@ -8,7 +8,7 @@
       <i class="fa fa-question"></i>
       FAQ
     </router-link>
-    <a href="https://discord.gg/Egsv4VR5" class="item item-3">
+    <a href="https://discord.gg/qMWgjtSumY" class="item item-3">
       Discord
     </a>
     <a target="_blank" href="https://github.com/feeIs/weicards/" class="item item-4">
